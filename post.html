@@ -1,0 +1,23 @@
+<!-- <head> 里的 title 改成：<title>文章 · 野猪篱</title> -->
+
+
+
+<main>
+  <div class="wrap">
+    <div class="post-article">
+      <!-- JS 会把渲染好的文章塞进这里 -->
+      <div id="postArticle"></div>
+      <!-- 评论：Giscus 接入点（在 #postArticle 之外，不会被文章渲染覆盖） -->
+      <section class="comments" aria-labelledby="commentsTitle">
+        <h2 id="commentsTitle">留言篱下</h2>
+        <div id="giscusMount"></div>
+      </section>
+    </div>
+  </div>
+</main>
+<!-- 页脚同 posts.html -->
+<script src="assets/js/markdown.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+<script src="assets/js/blog.js" defer></script>
+</body>
+</html>

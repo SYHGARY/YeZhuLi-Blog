@@ -1,0 +1,59 @@
+{
+  "site": {
+    "name": "野猪篱",
+    "nameEn": "Wild Boar Hedge",
+    "description": "两个人的生活博客，记录日常碎片、旅行足迹、读书观影与细碎思考。"
+  },
+  "posts": [
+    {
+      "slug": "hello-hedge",
+      "title": "开篱第一篇：为什么我们要写博客",
+      "date": "2025-08-02",
+      "category": "日常",
+      "tags": ["开篇", "野猪篱"],
+      "author": "阿篱",
+      "cover": "assets/images/covers/hello-hedge.svg",
+      "excerpt": "手机相册越堆越乱，旅行回来整理一次就再也没打开过。所以干脆做个我们自己的小院子——不用给谁看，就是两个人的备忘录。"
+    },
+    {
+      "slug": "mountain-two-days",
+      "title": "山里两天：把手机放进背包最底下",
+      "date": "2025-07-19",
+      "category": "旅行",
+      "tags": ["露营", "山里", "装备"],
+      "author": "小野",
+      "cover": "assets/images/covers/mountain-two-days.svg",
+      "excerpt": "上山那天雾很大，能见度不到三十米。我们在半山腰扎了帐篷，煮了一锅泡面，然后发现忘了带筷子。"
+    },
+    {
+      "slug": "books-2025-spring",
+      "title": "春天读完的六本书，和四部电影",
+      "date": "2025-06-15",
+      "category": "读书观影",
+      "tags": ["书单", "电影", "春天"],
+      "author": "阿篱",
+      "cover": "assets/images/covers/books-2025-spring.svg",
+      "excerpt": "拖到夏天才整理。有几本很喜欢，有几本读完就忘了——记住的和忘掉的，大概都能说明点什么。"
+    },
+    {
+      "slug": "tiny-things",
+      "title": "让我开心的十件小事",
+      "date": "2025-05-24",
+      "category": "碎碎念",
+      "tags": ["日常", "清单", "小事"],
+      "author": "阿篱",
+      "cover": "assets/images/covers/tiny-things.svg",
+      "excerpt": "不是励志清单。就是一些便宜、随时能做、做完会舒服五分钟的事，适合在状态不好的时候翻出来做一件。"
+    },
+    {
+      "slug": "spring-walk",
+      "title": "沿着河走了九公里",
+      "date": "2025-04-06",
+      "category": "旅行",
+      "tags": ["散步", "春天", "河边"],
+      "author": "小野",
+      "cover": "assets/images/covers/spring-walk.svg",
+      "excerpt": "本来只打算走两公里就去吃饭，结果一路走到了桥那头。回来的时候饿了，把路边摊的烤肠吃了三根。"
+    }
+  ]
+}
