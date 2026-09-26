@@ -9,8 +9,6 @@ public_folder: /
 # 发布后显示的网站地址
 site_url: https://boarhedge.netlify.app
 
-publish_mode: editorial_workflow
-
 collections:
   - name: posts
     label: 文章
@@ -24,7 +22,7 @@ collections:
       preview: false
     fields:
       - { label: 标题, name: title, widget: string }
-      - { label: 日期, name: date, widget: date, date_format: 'YYYY-MM-DD', format: 'YYYY-MM-DD' }
+      - { label: 日期, name: date, widget: string, hint: '格式：2025-09-26' }
       - label: 分类
         name: category
         widget: select
