@@ -9,38 +9,42 @@
          background:#E8F5E9;display:flex;align-items:center;justify-content:center;min-height:100vh;color:#2E4D20}
     .loading{text-align:center;padding:40px}
     .boar{font-size:48px;margin-bottom:16px}
-    .err{max-width:420px;font-size:14px;line-height:1.8;color:#8D6E63}
+    .err{max-width:460px;font-size:14px;line-height:1.9;color:#8D6E63;text-align:left}
     .err a{color:#7CB342}
+    code{background:#fff;padding:2px 6px;border-radius:4px;font-size:13px}
   </style>
 </head>
 <body>
   <div class="loading" id="loading">
     <div class="boar">🐗</div>
     <p>正在打开后台…</p>
-    <p style="font-size:12px;color:#8D6E63">如果一直转圈，请检查网络</p>
   </div>
 
   <script>
-    // 多 CDN 备用加载 Decap CMS
+    // 优先加载本地文件（把 decap-cms.js 放到 admin/ 目录即可离线），
+    // 失败再试国内 CDN
     var CDNS = [
-      'https://cdn.jsdelivr.net/npm/decap-cms@3.1.12/dist/decap-cms.js',
-      'https://unpkg.com/decap-cms@3.1.12/dist/decap-cms.js',
-      'https://cdnjs.cloudflare.com/ajax/libs/decap-cms/3.1.12/decap-cms.min.js'
+      'decap-cms.js',
+      'https://cdn.staticfile.net/decap-cms/3.1.12/decap-cms.min.js',
+      'https://lib.baomitu.com/decap-cms/3.1.12/decap-cms.min.js',
+      'https://cdn.jsdelivr.net/npm/decap-cms@3.1.12/dist/decap-cms.js'
     ];
     var i = 0;
     function loadNext() {
       if (i >= CDNS.length) {
         document.getElementById('loading').innerHTML =
           '<div class="boar">🐗</div><p><strong>后台没加载出来</strong></p>' +
-          '<p class="err">可能是网络问题。请用 Chrome / Edge 打开，<br>' +
-          '或刷新一次。如果还是不行，把这个页面的网址发给我。</p>';
+          '<div class="err">' +
+          '<p>请手动下载后台主文件：</p>' +
+          '<p>1. 在能上网的电脑打开 <a href="https://unpkg.com/decap-cms@3.1.12/dist/decap-cms.js" target="_blank">这个链接</a></p>' +
+          '<p>2. 右键 → 另存为，保存到你项目的 <code>admin/decap-cms.js</code></p>' +
+          '<p>3. 推到 GitHub，重新部署后刷新 /admin/</p>' +
+          '</div>';
         return;
       }
       var s = document.createElement('script');
       s.src = CDNS[i++];
-      s.onload = function () {
-        // Decap 自动初始化，会自动接管整个页面
-      };
+      s.onload = function () { /* Decap 自动接管页面 */ };
       s.onerror = loadNext;
       document.head.appendChild(s);
     }
