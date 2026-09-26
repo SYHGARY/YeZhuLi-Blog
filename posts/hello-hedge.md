@@ -7,7 +7,7 @@ tags:
   - 野猪篱
 author: 猪猪小宋
 excerpt: 想和猪猪小李记录下我们在一起的点点滴滴
-cover: assets/images/covers/hello-hedge.svg
+cover: /微信图片_20260925220008_52206_1.png
 images:
   - /微信图片_20260925220008_52206_1.png
 ---
@@ -34,7 +34,7 @@ images:
 
 名字是在中南财吃饭前定下的。因为小李说小宋是猪猪，然后小李名字像篱，可以圈住小宋。
 
-![篱笆与山野](assets/images/covers/hello-hedge.svg "开篱那天，阳台外的绿")
+![篱笆与山野]( "开篱那天，阳台外的绿")
 
 篱笆不是围墙。它只是给牵牛花一个方向。
 
