@@ -699,8 +699,7 @@ html[data-theme="dark"] .cover-credit{text-shadow:0 1px 5px rgba(0,0,0,.7)}
 .fy-label{font-size:10.5px;letter-spacing:.22em;opacity:.85}
 
 /* 单条日志 */
-.entry{
-  display:grid;grid-template-columns:120px 1fr;gap:30px;
+.entry{display:grid;grid-template-columns:120px minmax(0,1fr);gap:30px;
   margin-bottom:38px;align-items:start;
 }
 .entry-date{position:relative;text-align:center;padding-top:2px}
@@ -858,7 +857,7 @@ html[data-theme="dark"] .cover-credit{text-shadow:0 1px 5px rgba(0,0,0,.7)}
 .tok-number{color:var(--tok-number)}
 
 /* ---------- 9. 关于我们 ---------- */
-.couple{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:0 auto 52px;max-width:920px}
+.couple{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin:0 auto 52px;max-width:920px}
 .person{
   position:relative;overflow:hidden;text-align:center;
   background:var(--card);
@@ -922,9 +921,7 @@ html[data-theme="dark"] .cover-credit{text-shadow:0 1px 5px rgba(0,0,0,.7)}
   content:"";position:absolute;left:6px;top:14px;bottom:22px;width:2px;border-radius:2px;
   background:linear-gradient(180deg,var(--green-wash) 0,var(--green-wash) 70%,transparent);
 }
-.ms{
-  position:relative;
-  display:grid;grid-template-columns:104px 1fr;gap:20px;
+.ms{position:relative;display:grid;grid-template-columns:104px minmax(0,1fr);gap:20px;
   padding:14px 4px 20px;align-items:baseline;
 }
 .ms::before{
@@ -1184,11 +1181,14 @@ html[data-theme="dark"] .fboar--light{--fb-body:#FBF3E6;--fb-belly:#FFFFFF;--fb-
   .ms-date{font-size:13px}
 }
 @media (max-width:480px){
-  body{font-size:15.5px}
+  body{font-size:15.5px;overflow-wrap:break-word}
   .wrap{padding-inline:16px}
+  .page-head{margin-bottom:30px}
+  .page-head p{font-size:13px;max-width:100%;padding:0 8px}
   .entry-images{gap:7px}
   .lightbox-prev{left:10px}.lightbox-next{right:10px}
   .cover-sun{width:96px;height:96px}
+  .entry-card,.person{min-width:0}
 }
 
 /* ---------- 15. 无障碍 ---------- */
