@@ -1,6 +1,6 @@
 /* =========================================================
-   野猪篱 — 博客逻辑
-   仅 index / posts / archive / post 四个页面引入
+   野猪篱 — 页面逻辑（三页结构）
+   封面随机短句 + 博客时间线（文章 / 归档 / 相册融合）
    ========================================================= */
 (function () {
   'use strict';
@@ -8,42 +8,25 @@
   var MM = window.MiniMarkdown;
   var INDEX_URL = 'posts/index.json';
 
-  /* ============ 唯一需要你手动改的地方：Giscus 配置 ============
-     1) 仓库需公开，并在 Settings → General → Features 打开 Discussions
-     2) 安装 https://github.com/apps/giscus
-     3) 打开 https://giscus.app/zh-CN ，填入仓库，选 Discussion 分类
-     4) 把生成的 repo / repoId / categoryId 抄到下面
-     留空则显示「评论未接入」的提示，不影响其它功能。
-     =============================================================== */
-  var GISCUS = {
-    repo: '',                                   // 例如 'your-name/wild-boar-hedge'
-    repoId: '',                                 // 例如 'R_kgDOLxxxxx'
-    category: 'Announcements',                  // Discussion 分类名
-    categoryId: '',                             // 例如 'DIC_kwDOLxxxx'
-    mapping: 'pathname',
-    lang: 'zh-CN'
-  };
-
-  /* ============ 首页随机短句 ============ */
+  /* ============ 封面随机短句 ============ */
   var QUOTES = [
-    { text: '所谓浪漫，就是和她一起把日子过慢。', from: '野猪篱' },
-    { text: '山野辽阔，我们只占一小块阳光。', from: '野猪篱' },
-    { text: '篱笆不是为了挡住谁，是为了给牵牛花一个方向。', from: '野猪篱' },
-    { text: '两个人的生活，是从「今天吃什么」开始的。', from: '日常' },
-    { text: '把小事记下来，日子就有了重量。', from: '野猪篱' },
-    { text: '风穿过篱笆的时候，会顺便把心事也带走。', from: '山野笔记' },
-    { text: '愿你有一个不赶时间的下午。', from: '野猪篱' },
-    { text: '我们不必成为风景，只要我们互相看得见。', from: '野猪篱' },
-    { text: '烤肉、热汤、旧电影，冬天就该这样过。', from: '冬季清单' },
-    { text: '慢慢来，比较快。', from: '老话' },
-    { text: '一杯茶的时间，想清楚一件事就够了。', from: '野猪篱' },
-    { text: '散步是两个人的最短旅行。', from: '野猪篱' },
-    { text: '书读得慢一点，反而记得久一点。', from: '读书笔记' },
-    { text: '月亮今天也很好看，可惜你没抬头。', from: '野猪篱' },
-    { text: '我们不急，春天每年都来。', from: '野猪篱' },
-    { text: '所有长途跋涉，都为了回到一张餐桌。', from: '野猪篱' },
-    { text: '野猪不挑食，我们也是——生活给什么就吃什么，再添点盐。', from: '野猪篱' },
-    { text: '好好吃饭，好好睡觉，好好相爱。', from: '野猪篱' }
+    '所谓浪漫，就是和她一起把日子过慢。',
+    '山野辽阔，我们只占一小块阳光。',
+    '篱笆不是为了挡住谁，是为了给牵牛花一个方向。',
+    '两个人的生活，是从「今天吃什么」开始的。',
+    '把小事记下来，日子就有了重量。',
+    '风穿过篱笆的时候，会顺便把心事也带走。',
+    '愿你有一个不赶时间的下午。',
+    '我们不必成为风景，只要我们互相看得见。',
+    '烤肉、热汤、旧电影，冬天就该这样过。',
+    '慢慢来，比较快。',
+    '一杯茶的时间，想清楚一件事就够了。',
+    '散步是两个人的最短旅行。',
+    '书读得慢一点，反而记得久一点。',
+    '月亮今天也很好看，可惜你没抬头。',
+    '我们不急，春天每年都来。',
+    '所有长途跋涉，都为了回到一张餐桌。',
+    '好好吃饭，好好睡觉，好好相爱。'
   ];
 
   /* ================= 工具 ================= */
@@ -54,23 +37,27 @@
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;');
   }
-  function param(name) {
-    var m = new RegExp('[?&]' + name + '=([^&#]*)').exec(location.search);
-    return m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : '';
+  function partsOf(date) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(date || ''));
+    return m ? { y: m[1], m: m[2], d: m[3] } : { y: '', m: '', d: '' };
   }
-  function uniq(arr) {
-    var seen = {}, out = [];
-    arr.forEach(function (v) { if (v && !seen[v]) { seen[v] = 1; out.push(v); } });
-    return out;
-  }
-  function postUrl(p) { return 'post.html?slug=' + encodeURIComponent(p.slug); }
-  function ymOf(date) { return String(date || '').slice(0, 7); }
-  function fmtDate(s, style) {
-    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(s || ''));
-    if (!m) return esc(s || '');
-    return style === 'cn'
-      ? m[1] + ' 年 ' + Number(m[2]) + ' 月 ' + Number(m[3]) + ' 日'
-      : m[1] + '-' + m[2] + '-' + m[3];
+
+  /* 冒小图形的工具由 main.js 提供（全站可用） */
+  var popShape = window.WBHPopShape;
+
+  var BOAR_SVG = '<svg class="state-boar" viewBox="0 0 64 48" fill="none" stroke="currentColor" '
+    + 'stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+    + '<path d="M18 18c-1-5 0-8 2.5-9.5 2 1.6 3.4 4.4 3.8 7.6"/>'
+    + '<path d="M46 18c1-5 0-8-2.5-9.5-2 1.6-3.4 4.4-3.8 7.6"/>'
+    + '<path d="M32 12c8.3 0 14.5 5.4 14.5 14.5C46.5 34.9 40 41 32 41S17.5 34.9 17.5 26.5C17.5 17.4 23.7 12 32 12z"/>'
+    + '<circle cx="26" cy="24.5" r="1.8" fill="currentColor" stroke="none"/>'
+    + '<circle cx="38" cy="24.5" r="1.8" fill="currentColor" stroke="none"/>'
+    + '<path d="M27.5 32.5h9"/><circle cx="32" cy="35.6" r=".9" fill="currentColor" stroke="none"/>'
+    + '<path d="M22 30.5c.6 1.8 1.8 2.6 3.2 2.4"/><path d="M42 30.5c-.6 1.8-1.8 2.6-3.2 2.4"/>'
+    + '</svg>';
+
+  function stateBox(msg) {
+    return '<div class="state">' + BOAR_SVG + '<p>' + msg + '</p></div>';
   }
 
   /* ================= 数据 ================= */
@@ -85,91 +72,102 @@
       .then(function (data) {
         var posts = (data.posts || []).slice().sort(function (a, b) {
           if (a.date === b.date) return 0;
-          return a.date < b.date ? 1 : -1;   // 时间倒序
+          return a.date < b.date ? 1 : -1;   /* 时间倒序 */
         });
         cache = { site: data.site || {}, posts: posts };
         return cache;
       });
   }
 
-  /* ================= 片段 ================= */
-  var BOAR_SVG = '<svg class="state-boar" viewBox="0 0 64 48" fill="none" stroke="currentColor" '
-    + 'stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
-    + '<path d="M18 18c-1-5 0-8 2.5-9.5 2 1.6 3.4 4.4 3.8 7.6"/>'
-    + '<path d="M46 18c1-5 0-8-2.5-9.5-2 1.6-3.4 4.4-3.8 7.6"/>'
-    + '<path d="M32 12c8.3 0 14.5 5.4 14.5 14.5C46.5 34.9 40 41 32 41S17.5 34.9 17.5 26.5C17.5 17.4 23.7 12 32 12z"/>'
-    + '<circle cx="26" cy="24.5" r="1.8" fill="currentColor" stroke="none"/>'
-    + '<circle cx="38" cy="24.5" r="1.8" fill="currentColor" stroke="none"/>'
-    + '<path d="M27.5 32.5h9"/><circle cx="32" cy="35.6" r=".9" fill="currentColor" stroke="none"/>'
-    + '<path d="M22 30.5c.6 1.8 1.8 2.6 3.2 2.4"/><path d="M42 30.5c-.6 1.8-1.8 2.6-3.2 2.4"/>'
-    + '</svg>';
+  /* 读取每篇正文；失败时退回摘要 */
+  function withBody(p) {
+    var file = p.file || ('posts/' + p.slug + '.md');
+    return fetch(file, { cache: 'no-cache' })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
+      .then(function (md) { p.__body = MM ? MM.render(md) : esc(p.excerpt || ''); return p; })
+      .catch(function () { p.__body = '<p>' + esc(p.excerpt || '') + '</p>'; return p; });
+  }
 
-  function skeletonCards(n) {
-    var s = '';
-    for (var i = 0; i < n; i++) s += '<div class="skeleton"></div>';
-    return s;
+  /* ================= 封面随机短句 ================= */
+  function initCoverQuote() {
+    var el = $('#coverQuote');
+    if (!el) return;
+    var last = -1;
+    function pick() {
+      var i = Math.floor(Math.random() * QUOTES.length);
+      if (QUOTES.length > 1 && i === last) i = (i + 1) % QUOTES.length;
+      last = i;
+      el.classList.add('is-fading');
+      setTimeout(function () {
+        el.textContent = QUOTES[i];
+        el.classList.remove('is-fading');
+      }, 400);
+    }
+    pick();
+    setInterval(pick, 7000);
   }
-  function stateBox(msg) {
-    return '<div class="state">' + BOAR_SVG + '<p>' + msg + '</p></div>';
-  }
-  function tagChips(tags, limit) {
-    return (tags || []).slice(0, limit || 3).map(function (t) {
+
+  /* ================= 博客时间线 ================= */
+  function tagChips(tags) {
+    return (tags || []).map(function (t) {
       return '<span class="chip">#' + esc(t) + '</span>';
     }).join('');
   }
 
-  function cardHTML(p) {
-    var cover = p.cover
-      ? '<div class="card-cover"><img src="' + esc(p.cover) + '" alt="' + esc(p.title)
-        + '" loading="lazy" decoding="async"></div>'
-      : '<div class="card-cover card-cover--empty" aria-hidden="true"></div>';
-    var chips = tagChips(p.tags, 3);
-    return '<article class="card fade-in">'
-      + cover
-      + '<div class="card-body">'
-      + '<h3 class="card-title"><a href="' + postUrl(p) + '">' + esc(p.title) + '</a></h3>'
-      + '<p class="card-excerpt">' + esc(p.excerpt || '') + '</p>'
-      + '<div class="card-meta">'
-      + '<time datetime="' + esc(p.date) + '">' + fmtDate(p.date) + '</time>'
-      + (p.category ? '<span class="dot">·</span><span>' + esc(p.category) + '</span>' : '')
-      + (chips ? '<span class="dot">·</span>' + chips : '')
-      + '</div>'
-      + '</div>'
-      + '</article>';
+  function imagesHTML(p) {
+    var imgs = (p.images && p.images.length)
+      ? p.images
+      : (p.cover ? [p.cover] : []);
+    if (!imgs.length) return '';
+    var cls = imgs.length === 1 ? 'n1'
+      : (imgs.length === 2 ? 'n2'
+      : (imgs.length === 4 ? 'n4' : 'n3'));
+    var inner = imgs.map(function (src, i) {
+      return '<a href="' + esc(src) + '" data-zoom="' + esc(src) + '" aria-label="查看大图 ' + (i + 1) + '">'
+        + '<img src="' + esc(src) + '" alt="' + esc(p.title) + ' 图片 ' + (i + 1)
+        + '" loading="lazy" decoding="async"></a>';
+    }).join('');
+    return '<div class="entry-images ' + cls + '">' + inner + '</div>';
   }
 
-  /* ================= 首页 ================= */
-  function initHome() {
-    var grid = $('#latestPosts');
-    if (!grid) return;
-    var limit = Number(grid.getAttribute('data-limit') || 6);
-    grid.innerHTML = skeletonCards(3);
-
-    loadIndex().then(function (d) {
-      var list = d.posts.slice(0, limit);
-      grid.innerHTML = list.length
-        ? list.map(cardHTML).join('')
-        : stateBox('还没有文章，去 <code>posts/</code> 写第一篇吧 🌱');
-    }).catch(function (err) {
-      grid.innerHTML = stateBox('文章索引读取失败（' + esc(err.message)
-        + '）。<br>如果你是双击打开 HTML，请用本地服务器预览，例如：<br>'
-        + '<code>python -m http.server 8080</code>');
-    });
+  function entryHTML(p) {
+    var d = partsOf(p.date);
+    var date = '<div class="entry-date">'
+      + '<span class="ed-dot"></span>'
+      + '<span class="ed-day">' + (d.d || '') + '</span>'
+      + '<span class="ed-my">' + (d.y ? d.y + '.' + d.m : '') + '</span>'
+      + (p.category ? '<span class="ed-cat">' + esc(p.category) + '</span>' : '')
+      + '</div>';
+    var card = '<div class="entry-card">'
+      + '<h2 class="entry-title">' + esc(p.title) + '</h2>'
+      + '<div class="entry-text prose">' + (p.__body || '') + '</div>'
+      + imagesHTML(p)
+      + '<div class="entry-foot">'
+      + tagChips(p.tags)
+      + (p.author ? '<span class="ef-author">由 ' + esc(p.author) + ' 记下</span>' : '')
+      + '</div>'
+      + '</div>';
+    return '<article class="entry" data-cat="' + esc(p.category || '') + '">' + date + card + '</article>';
   }
 
-  /* ================= 文章列表页 ================= */
-  function initList() {
-    var grid = $('#postList');
-    if (!grid) return;
+  function yearHTML(y) {
+    return '<div class="feed-year"><span class="fy-line"></span>'
+      + '<span class="fy-badge"><span class="fy-year">' + y + '</span><span class="fy-label">这一年</span></span>'
+      + '<span class="fy-line"></span></div>';
+  }
+
+  function initFeed() {
+    var feed = $('#feed');
+    if (!feed) return;
     var catBox = $('#filterCats');
-    var tagBox = $('#filterTags');
     var hint = $('#resultHint');
-    grid.innerHTML = skeletonCards(6);
+    feed.innerHTML = stateBox('正在把日子搬出来…');
 
     loadIndex().then(function (d) {
       var posts = d.posts;
+      if (!posts.length) { feed.innerHTML = stateBox('还没有内容，去写第一篇吧 🌱'); return; }
 
-      /* 分类：按数量降序 */
+      /* 分类列表 */
       var catCount = {};
       posts.forEach(function (p) {
         if (p.category) catCount[p.category] = (catCount[p.category] || 0) + 1;
@@ -177,273 +175,150 @@
       var cats = Object.keys(catCount).sort(function (a, b) {
         return catCount[b] - catCount[a] || a.localeCompare(b, 'zh');
       });
+      var activeCat = '';
 
-      /* 标签：按数量降序，最多取 20 个 */
-      var tagCount = {};
-      posts.forEach(function (p) {
-        (p.tags || []).forEach(function (t) { tagCount[t] = (tagCount[t] || 0) + 1; });
-      });
-      var tags = Object.keys(tagCount).sort(function (a, b) {
-        return tagCount[b] - tagCount[a] || a.localeCompare(b, 'zh');
-      }).slice(0, 20);
-
-      var state = { cat: param('cat'), tag: param('tag') };
-      if (state.cat && cats.indexOf(state.cat) === -1) state.cat = '';
-      if (state.tag && tags.indexOf(state.tag) === -1) state.tag = '';
-
-      function btn(key, value, label) {
-        return '<button type="button" class="filter-btn" data-key="' + key
-          + '" data-value="' + esc(value) + '">' + esc(label) + '</button>';
+      function btn(value, label) {
+        return '<button type="button" class="filter-btn" data-cat="' + esc(value) + '">' + esc(label) + '</button>';
       }
-      catBox.innerHTML = btn('cat', '', '全部') + cats.map(function (c) { return btn('cat', c, c); }).join('');
-      tagBox.innerHTML = btn('tag', '', '全部') + tags.map(function (t) { return btn('tag', t, t); }).join('');
+      catBox.innerHTML = btn('', '全部')
+        + cats.map(function (c) { return btn(c, c + ' ' + catCount[c]); }).join('');
 
       function draw() {
-        var list = posts.filter(function (p) {
-          var okCat = !state.cat || p.category === state.cat;
-          var okTag = !state.tag || (p.tags || []).indexOf(state.tag) > -1;
-          return okCat && okTag;
+        var list = posts.filter(function (p) { return !activeCat || p.category === activeCat; });
+
+        /* 按年份分组输出 */
+        var html = '';
+        var lastY = null;
+        list.forEach(function (p) {
+          var y = String(p.date).slice(0, 4);
+          if (y !== lastY) { html += yearHTML(y); lastY = y; }
+          html += entryHTML(p);
         });
+        feed.innerHTML = html || stateBox('这个分类下还没有内容 🍃');
 
-        grid.innerHTML = list.length
-          ? list.map(cardHTML).join('')
-          : stateBox('这个筛选下还没有文章 🍃');
-        if (hint) hint.textContent = '共 ' + list.length + ' 篇 · 按时间倒序';
-
+        if (hint) hint.textContent = '共 ' + list.length + ' 条 · 按时间倒序';
         $$('.filter-btn', catBox).forEach(function (b) {
-          b.classList.toggle('active', b.getAttribute('data-value') === state.cat);
+          b.classList.toggle('active', b.getAttribute('data-cat') === activeCat);
         });
-        $$('.filter-btn', tagBox).forEach(function (b) {
-          b.classList.toggle('active', b.getAttribute('data-value') === state.tag);
-        });
-
-        var q = [];
-        if (state.cat) q.push('cat=' + encodeURIComponent(state.cat));
-        if (state.tag) q.push('tag=' + encodeURIComponent(state.tag));
-        if (history.replaceState) {
-          history.replaceState(null, '', location.pathname + (q.length ? '?' + q.join('&') : ''));
-        }
+        if (window.WBHReveal) window.WBHReveal(feed);
       }
 
-      document.addEventListener('click', function (e) {
+      catBox.addEventListener('click', function (e) {
         var b = e.target.closest('.filter-btn');
-        if (!b || !b.getAttribute('data-key')) return;
-        state[b.getAttribute('data-key')] = b.getAttribute('data-value');
+        if (!b) return;
+        activeCat = b.getAttribute('data-cat') || '';
         draw();
       });
 
-      draw();
+      /* 先取全部正文，再首绘 */
+      Promise.all(posts.map(withBody)).then(draw);
     }).catch(function (err) {
-      grid.innerHTML = stateBox('文章索引读取失败（' + esc(err.message) + '）。');
+      feed.innerHTML = stateBox('索引读取失败（' + esc(err.message) + '）。<br>'
+        + '本地双击打开时请用本地服务器预览，例如：<br><code>python -m http.server 8080</code>');
     });
   }
 
-  /* ================= 归档页 ================= */
-  function initArchive() {
-    var box = $('#archiveBox');
-    if (!box) return;
-    box.innerHTML = stateBox('正在整理…');
+  /* ============ 封面小交互 ============ */
+  function initCoverInteractions() {
+    var cover = $('.cover');
+    if (!cover) return;
 
-    loadIndex().then(function (d) {
-      if (!d.posts.length) { box.innerHTML = stateBox('还没有文章 🌱'); return; }
+    var PETAL = '<path d="M12 2C15 6 18 9 18 13a6 6 0 0 1-12 0c0-4 3-7 6-11z"/>';
 
-      var years = {};
-      d.posts.forEach(function (p) {
-        var y = String(p.date).slice(0, 4);
-        var m = String(p.date).slice(5, 7);
-        if (!years[y]) years[y] = {};
-        if (!years[y][m]) years[y][m] = [];
-        years[y][m].push(p);
+    /* 点空白处：飘出一小簇花瓣 */
+    cover.addEventListener('click', function (e) {
+      if (e.target.closest('a,button')) return;
+      for (var i = 0; i < 3; i++) {
+        (function (i) {
+          setTimeout(function () {
+            popShape('cover-petal',
+              e.clientX + (Math.random() * 26 - 13),
+              e.clientY + (Math.random() * 20 - 10),
+              PETAL, 1700);
+          }, i * 90);
+        })(i);
+      }
+    });
+
+    /* 鼠标左右移动时，云做视差 */
+    var ca = $('.cover-cloud--a'), cb = $('.cover-cloud--b'), cc = $('.cover-cloud--c');
+    cover.addEventListener('mousemove', function (e) {
+      var rx = e.clientX / window.innerWidth - .5;
+      if (ca) ca.style.translate = (rx * -14) + 'px 0';
+      if (cb) cb.style.translate = (rx * 22) + 'px 0';
+      if (cc) cc.style.translate = (rx * -30) + 'px 0';
+    });
+  }
+
+  /* ============ 推门过场 ============
+     点「推开篱门」/「下滑推门」/ 鼠标下滚 / 触屏上滑 / 下方向键，
+     都会先把篱门推开，再进博客。 */
+  function initGate() {
+    var cover = $('.cover');
+    if (!cover) return;
+
+    var DURATION = 2650;   /* 与 style.css 里 .is-opening 的时间轴对齐 */
+    var opening = false;
+
+    function reduced() {
+      return window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+
+    function openGate() {
+      if (opening) return;
+      opening = true;
+      if (reduced()) { location.href = 'blog.html'; return; }
+      cover.classList.add('is-opening');
+      document.body.style.overflow = 'hidden';
+      setTimeout(function () { location.href = 'blog.html'; }, DURATION);
+    }
+
+    /* 1) 门上的两个入口 */
+    $$('a[href="blog.html"]', cover).forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        openGate();
       });
-
-      box.innerHTML = Object.keys(years).sort().reverse().map(function (y) {
-        var months = Object.keys(years[y]).sort().reverse();
-        var total = months.reduce(function (a, m) { return a + years[y][m].length; }, 0);
-        return '<section class="archive-year fade-in">'
-          + '<div class="archive-year-head"><h2>' + y + '</h2><span class="count">' + total + ' 篇</span></div>'
-          + months.map(function (m) {
-            return '<p class="archive-month">' + y + '.' + m + '</p>'
-              + '<ul class="archive-list">'
-              + years[y][m].map(function (p) {
-                return '<li>'
-                  + '<time class="a-date" datetime="' + esc(p.date) + '">' + String(p.date).slice(8, 10) + '</time>'
-                  + '<a class="a-title" href="' + postUrl(p) + '">' + esc(p.title) + '</a>'
-                  + '<span class="a-tags">' + tagChips(p.tags, 2) + '</span>'
-                  + '</li>';
-              }).join('')
-              + '</ul>';
-          }).join('')
-          + '</section>';
-      }).join('');
-    }).catch(function (err) {
-      box.innerHTML = stateBox('归档读取失败（' + esc(err.message) + '）。');
     });
-  }
 
-  /* ================= 文章详情页 ================= */
-  function initPost() {
-    var host = $('#postArticle');
-    if (!host) return;
-    var slug = param('slug');
+    /* 2) 鼠标向下滚 */
+    window.addEventListener('wheel', function (e) {
+      if (opening || e.deltaY < 8) return;
+      openGate();
+    }, { passive: true });
 
-    if (!slug) {
-      host.innerHTML = stateBox('没有指定文章。<br><a href="posts.html">← 回到文章列表</a>');
-      return;
-    }
-    host.innerHTML = stateBox('正在展开书页…');
+    /* 3) 触屏上滑 */
+    var touchY = 0;
+    window.addEventListener('touchstart', function (e) {
+      touchY = e.touches[0] ? e.touches[0].clientY : 0;
+    }, { passive: true });
+    window.addEventListener('touchend', function (e) {
+      if (opening) return;
+      var end = e.changedTouches[0] ? e.changedTouches[0].clientY : touchY;
+      if (touchY - end > 44) openGate();
+    }, { passive: true });
 
-    loadIndex().then(function (d) {
-      var idx = -1;
-      d.posts.forEach(function (p, i) { if (p.slug === slug) idx = i; });
-      if (idx === -1) {
-        host.innerHTML = stateBox('没有找到这篇文章，可能链接过期了。<br><a href="posts.html">← 回到文章列表</a>');
-        return null;
-      }
-      var meta = d.posts[idx];
-      var file = meta.file || ('posts/' + meta.slug + '.md');
-      return fetch(file, { cache: 'no-cache' })
-        .then(function (r) {
-          if (!r.ok) throw new Error('HTTP ' + r.status + '（' + file + '）');
-          return r.text();
-        })
-        .then(function (md) { renderPost(meta, md, d.posts, idx); });
-    }).catch(function (err) {
-      host.innerHTML = stateBox('内容加载失败：' + esc(err.message)
-        + '。<br>如果你是在本地双击打开的 HTML，请用本地服务器预览：<br><code>python -m http.server 8080</code>');
+    /* 4) 键盘 */
+    document.addEventListener('keydown', function (e) {
+      if (opening) return;
+      if (e.key === 'ArrowDown' || e.key === 'PageDown') openGate();
     });
-  }
 
-  function navHTML(older, newer) {
-    function cell(p, kind) {
-      if (!p) {
-        return '<a class="pn-empty" aria-disabled="true"><span class="pn-label">'
-          + (kind === 'older' ? '上一篇' : '下一篇') + '</span>'
-          + '<span class="pn-title">' + (kind === 'older' ? '已经是最早一篇了' : '已经是最新一篇了') + '</span></a>';
-      }
-      return '<a href="' + postUrl(p) + '"' + (kind === 'newer' ? ' class="pn-next-link"' : '') + '>'
-        + '<span class="pn-label">' + (kind === 'older' ? '上一篇' : '下一篇') + '</span>'
-        + '<span class="pn-title">' + esc(p.title) + '</span></a>';
-    }
-    return '<nav class="post-nav" aria-label="文章导航">'
-      + '<div>' + cell(newer, 'newer') + '</div>'
-      + '<div class="pn-next">' + cell(older, 'older') + '</div>'
-      + '</nav>';
-  }
-
-  function renderPost(meta, md, all, idx) {
-    var older = all[idx + 1] || null;   // 更早
-    var newer = all[idx - 1] || null;   // 更新
-
-    document.title = meta.title + ' · 野猪篱';
-    var desc = document.querySelector('meta[name="description"]');
-    if (desc && meta.excerpt) desc.setAttribute('content', meta.excerpt);
-
-    var html = ''
-      + '<a class="post-back" href="posts.html">← 回到文章列表</a>'
-      + '<header class="post-header">'
-      + (meta.category ? '<span class="chip">' + esc(meta.category) + '</span>' : '')
-      + '<h1>' + esc(meta.title) + '</h1>'
-      + '<div class="post-meta">'
-      + '<time datetime="' + esc(meta.date) + '">' + fmtDate(meta.date, 'cn') + '</time>'
-      + (meta.author ? '<span class="dot">·</span><span>' + esc(meta.author) + '</span>' : '')
-      + ((meta.tags || []).length ? '<span class="dot">·</span>' + tagChips(meta.tags, 5) : '')
-      + '</div>'
-      + '</header>'
-      + (meta.cover
-        ? '<img class="post-cover" src="' + esc(meta.cover) + '" alt="' + esc(meta.title)
-          + '" loading="lazy" decoding="async">'
-        : '')
-      + '<div class="prose">' + MM.render(md) + '</div>'
-      + navHTML(older, newer);
-
-    var host = $('#postArticle');
-    host.className = 'post-article';
-    host.innerHTML = html;
-    window.scrollTo(0, 0);
-  }
-
-  /* ================= Giscus 评论 ================= */
-  function giscusTheme() {
-    return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark_dimmed' : 'light';
-  }
-
-  function initGiscus() {
-    var mount = $('#giscusMount');
-    if (!mount) return;
-
-    if (!GISCUS.repo || !GISCUS.repoId || !GISCUS.categoryId) {
-      mount.innerHTML = '<div class="state" style="padding:30px 16px">'
-        + '<p>评论系统还没有接入 🌿</p>'
-        + '<p style="font-size:13px;line-height:1.9">'
-        + '打开 <code>assets/js/blog.js</code>，把顶部 Giscus 的 '
-        + '<code>repo</code> / <code>repoId</code> / <code>categoryId</code> 填上即可启用。'
-        + '</p></div>';
-      return;
-    }
-
-    var s = document.createElement('script');
-    s.src = 'https://giscus.app/client.js';
-    s.async = true;
-    s.crossOrigin = 'anonymous';
-    s.setAttribute('data-repo', GISCUS.repo);
-    s.setAttribute('data-repo-id', GISCUS.repoId);
-    s.setAttribute('data-category', GISCUS.category);
-    s.setAttribute('data-category-id', GISCUS.categoryId);
-    s.setAttribute('data-mapping', GISCUS.mapping);
-    s.setAttribute('data-strict', '1');
-    s.setAttribute('data-reactions-enabled', '1');
-    s.setAttribute('data-emit-metadata', '0');
-    s.setAttribute('data-input-position', 'top');
-    s.setAttribute('data-lang', GISCUS.lang);
-    s.setAttribute('data-loading', 'lazy');
-    s.setAttribute('data-theme', giscusTheme());
-    mount.appendChild(s);
-
-    // 主题切换时同步 Giscus 配色
-    document.addEventListener('wbh:theme', function () {
-      var frame = document.querySelector('iframe.giscus-frame');
-      if (!frame) return;
-      frame.contentWindow.postMessage(
-        { giscus: { setConfig: { theme: giscusTheme() } } },
-        'https://giscus.app'
-      );
+    /* 从缓存返回时，把门恢复成关着的 */
+    window.addEventListener('pageshow', function (e) {
+      if (!e.persisted) return;
+      opening = false;
+      cover.classList.remove('is-opening');
+      document.body.style.overflow = '';
     });
-  }
-
-  /* ================= 随机短句彩蛋 ================= */
-  function initQuote() {
-    var textEl = $('#quoteText');
-    if (!textEl) return;
-    var fromEl = $('#quoteFrom');
-    var btn = $('#quoteRefresh');
-    var last = -1;
-
-    function pick() {
-      var i = Math.floor(Math.random() * QUOTES.length);
-      if (QUOTES.length > 1 && i === last) i = (i + 1) % QUOTES.length;
-      last = i;
-      var q = QUOTES[i];
-
-      textEl.classList.add('is-fading');
-      setTimeout(function () {
-        textEl.textContent = q.text;
-        if (fromEl) fromEl.textContent = q.from ? '— ' + q.from : '';
-        textEl.classList.remove('is-fading');
-      }, 170);
-    }
-
-    if (btn) btn.addEventListener('click', pick);
-    pick();
   }
 
   /* ================= 启动 ================= */
   function boot() {
-    initHome();
-    initList();
-    initArchive();
-    initPost();
-    initGiscus();
-    initQuote();
+    initCoverQuote();
+    initCoverInteractions();
+    initGate();
+    initFeed();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);

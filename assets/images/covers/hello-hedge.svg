@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F2F7E7"/>
+      <stop offset="1" stop-color="#E2EDD2"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#sky)"/>
+
+  <circle cx="680" cy="86" r="34" fill="#EBD59A" opacity=".85"/>
+  <ellipse cx="180" cy="96" rx="62" ry="18" fill="#FFFFFF" opacity=".65"/>
+  <ellipse cx="252" cy="84" rx="44" ry="14" fill="#FFFFFF" opacity=".55"/>
+
+  <!-- 远山 -->
+  <path d="M0 306Q200 214 408 282Q500 312 600 276Q700 240 800 272V450H0Z" fill="#B9DA8E"/>
+  <path d="M0 366Q260 292 520 352Q660 384 800 336V450H0Z" fill="#93C46B"/>
+
+  <!-- 偷看的小野猪 -->
+  <g>
+    <path d="M600 288L595 268L613 279Z" fill="#87685C" stroke="#5F4840" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M646 288L651 268L633 279Z" fill="#87685C" stroke="#5F4840" stroke-width="2.5" stroke-linejoin="round"/>
+    <ellipse cx="623" cy="302" rx="26" ry="20" fill="#87685C" stroke="#5F4840" stroke-width="3"/>
+    <circle cx="614" cy="298" r="2.6" fill="#33261F"/>
+    <circle cx="632" cy="298" r="2.6" fill="#33261F"/>
+    <ellipse cx="623" cy="312" rx="8" ry="6" fill="#A1877B"/>
+    <circle cx="620" cy="312" r="1.4" fill="#33261F"/>
+    <circle cx="626" cy="312" r="1.4" fill="#33261F"/>
+  </g>
+
+  <!-- 篱笆：横栏 -->
+  <rect x="0" y="332" width="800" height="13" fill="#B08E80" stroke="#8D6E63" stroke-width="2.5"/>
+  <rect x="0" y="392" width="800" height="13" fill="#B08E80" stroke="#8D6E63" stroke-width="2.5"/>
+
+  <!-- 篱笆：竖桩 -->
+  <g fill="#C2A294" stroke="#8D6E63" stroke-width="2.5" stroke-linejoin="round">
+    <path d="M26 302L41 280L56 302L56 432L26 432Z"/>
+    <path d="M86 302L101 280L116 302L116 432L86 432Z"/>
+    <path d="M146 302L161 280L176 302L176 432L146 432Z"/>
+    <path d="M206 302L221 280L236 302L236 432L206 432Z"/>
+    <path d="M266 302L281 280L296 302L296 432L266 432Z"/>
+    <path d="M326 302L341 280L356 302L356 432L326 432Z"/>
+    <path d="M386 302L401 280L416 302L416 432L386 432Z"/>
+    <path d="M446 302L461 280L476 302L476 432L446 432Z"/>
+    <path d="M506 302L521 280L536 302L536 432L506 432Z"/>
+    <path d="M566 302L581 280L596 302L596 432L566 432Z"/>
+    <path d="M626 302L641 280L656 302L656 432L626 432Z"/>
+    <path d="M686 302L701 280L716 302L716 432L686 432Z"/>
+    <path d="M746 302L761 280L776 302L776 432L746 432Z"/>
+  </g>
+
+  <!-- 藤叶 -->
+  <g fill="#7CB342">
+    <path d="M96 322c-12-2-18-12-14-24 12 2 17 12 14 24z"/>
+    <path d="M112 326c10-6 10-18 2-26-11 7-12 19-2 26z"/>
+    <path d="M250 320c-12-2-18-12-14-24 12 2 17 12 14 24z"/>
+    <path d="M416 324c11-5 12-17 4-26-12 6-13 18-4 26z"/>
+    <path d="M566 320c-12-2-18-12-14-24 12 2 17 12 14 24z"/>
+    <path d="M712 326c10-6 10-18 2-26-11 7-12 19-2 26z"/>
+  </g>
+  <path d="M88 328q24 14 32-2M242 326q20 12 28-2M408 330q22 12 30-2M558 328q22 12 30-2M704 330q20 12 28-2"
+        fill="none" stroke="#5B8C2A" stroke-width="2.2" stroke-linecap="round"/>
+</svg>

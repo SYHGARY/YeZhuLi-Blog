@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750">
+  <rect width="600" height="750" fill="#EEF5E4"/>
+  <circle cx="486" cy="120" r="40" fill="#EBD59A" opacity=".8"/>
+
+  <!-- 横栏 -->
+  <rect x="0" y="300" width="600" height="18" fill="#B08E80" stroke="#8D6E63" stroke-width="3"/>
+  <rect x="0" y="486" width="600" height="18" fill="#B08E80" stroke="#8D6E63" stroke-width="3"/>
+
+  <!-- 竖桩 -->
+  <g fill="#C2A294" stroke="#8D6E63" stroke-width="3" stroke-linejoin="round">
+    <path d="M30 244L65 206L100 244L100 672L30 672Z"/>
+    <path d="M150 244L185 206L220 244L220 672L150 672Z"/>
+    <path d="M270 244L305 206L340 244L340 672L270 672Z"/>
+    <path d="M390 244L425 206L460 244L460 672L390 672Z"/>
+    <path d="M510 244L545 206L580 244L580 672L510 672Z"/>
+  </g>
+
+  <!-- 新芽与藤 -->
+  <g stroke="#5B8C2A" stroke-width="3" fill="none" stroke-linecap="round">
+    <path d="M70 300q-4-40 22-64"/>
+    <path d="M190 300q4-44-18-70"/>
+    <path d="M310 300q-4-42 20-68"/>
+    <path d="M430 300q6-42-16-68"/>
+    <path d="M550 300q-2-40 22-62"/>
+  </g>
+  <g fill="#7CB342">
+    <path d="M86 244c-11-2-16-11-12-21 11 2 15 11 12 21z"/>
+    <path d="M176 238c10-5 10-16 2-23-10 6-11 17-2 23z"/>
+    <path d="M326 240c-11-2-16-11-12-21 11 2 15 11 12 21z"/>
+    <path d="M418 240c10-5 10-16 2-23-10 6-11 17-2 23z"/>
+    <path d="M566 246c-11-2-16-11-12-21 11 2 15 11 12 21z"/>
+  </g>
+  <g fill="#A9D27F">
+    <circle cx="60" cy="226" r="7"/><circle cx="200" cy="220" r="7"/>
+    <circle cx="300" cy="224" r="7"/><circle cx="446" cy="222" r="7"/>
+    <circle cx="540" cy="228" r="7"/>
+  </g>
+
+  <!-- 草地 -->
+  <path d="M0 672Q300 648 600 672V750H0Z" fill="#93C46B"/>
+  <g stroke="#5B8C2A" stroke-width="3" stroke-linecap="round">
+    <path d="M60 690l-6-18M74 692l2-18M180 688l-4-18M320 690l-6-18M460 688l2-18M540 692l-4-18"/>
+  </g>
+</svg>

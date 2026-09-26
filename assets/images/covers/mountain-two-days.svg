@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="fogsky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#EFF4E8"/>
+      <stop offset="1" stop-color="#DCE7D7"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#fogsky)"/>
+  <circle cx="624" cy="104" r="46" fill="#F0EBD8" opacity=".8"/>
+
+  <!-- 远山 -->
+  <path d="M0 282L170 148L302 250L462 126L622 250L762 168L800 208V450H0Z" fill="#C0CDAE"/>
+  <!-- 中山 -->
+  <path d="M0 332L150 208L322 320L502 198L702 320L800 258V450H0Z" fill="#98B37E"/>
+
+  <!-- 雾带 -->
+  <path d="M0 252Q200 238 400 252T800 246V276Q600 288 400 276T0 286Z" fill="#FFFFFF" opacity=".6"/>
+  <path d="M0 322Q240 306 480 322T800 316V344Q560 358 320 344T0 352Z" fill="#FFFFFF" opacity=".5"/>
+
+  <!-- 近坡 -->
+  <path d="M0 402Q300 342 600 392Q700 408 800 384V450H0Z" fill="#7AA25F"/>
+
+  <!-- 帐篷 -->
+  <g>
+    <path d="M150 394L204 332L258 394Z" fill="#E9D7AE" stroke="#8D6E63" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M204 394V354L230 394Z" fill="#B08E80"/>
+    <path d="M204 332V300" stroke="#8D6E63" stroke-width="2.6"/>
+    <path d="M204 300L228 308L204 316Z" fill="#7CB342"/>
+  </g>
+
+  <!-- 松树 -->
+  <g fill="#5E8248">
+    <path d="M556 404l-16 0 16-30z"/>
+    <path d="M572 386l-24 0 24-34z"/>
+    <path d="M612 404l-16 0 16-30z"/>
+    <path d="M628 386l-24 0 24-34z"/>
+    <path d="M668 404l-16 0 16-30z"/>
+    <path d="M684 388l-24 0 24-32z"/>
+  </g>
+  <g stroke="#5E8248" stroke-width="4">
+    <path d="M564 404v18M620 404v18M676 404v18"/>
+  </g>
+</svg>

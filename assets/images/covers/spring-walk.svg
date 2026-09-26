@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="walksky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F0F6E6"/>
+      <stop offset="1" stop-color="#DDECCE"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#walksky)"/>
+  <circle cx="124" cy="88" r="36" fill="#EBD59A" opacity=".9"/>
+
+  <!-- 树 -->
+  <g>
+    <path d="M150 250v70" stroke="#8D6E63" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="150" cy="226" r="44" fill="#8FC06A"/>
+    <path d="M640 262v64" stroke="#8D6E63" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="640" cy="238" r="40" fill="#7AB057"/>
+    <path d="M236 272v52" stroke="#8D6E63" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="236" cy="250" r="32" fill="#A0CC7B"/>
+  </g>
+
+  <!-- 坡地 -->
+  <path d="M0 300Q260 240 520 296Q680 330 800 290V450H0Z" fill="#B9DA8E"/>
+
+  <!-- 小河 -->
+  <path d="M800 196C660 252 640 306 532 338C410 374 306 388 176 450H264C368 398 476 392 590 356C692 324 712 266 800 232Z"
+        fill="#B9CEC2"/>
+  <path d="M796 214C690 262 672 306 576 336" fill="none" stroke="#FFFFFF" stroke-width="3" opacity=".55" stroke-linecap="round"/>
+
+  <!-- 土路 -->
+  <path d="M0 392Q200 360 380 384Q470 396 520 386" fill="none" stroke="#D8C49A" stroke-width="15" stroke-linecap="round" opacity=".85"/>
+
+  <!-- 两只小野猪 -->
+  <g fill="#8D6E63">
+    <ellipse cx="330" cy="372" rx="17" ry="10.5"/>
+    <circle cx="346" cy="364" r="8.5"/>
+    <path d="M341 358l-2-8 9 5z"/>
+    <path d="M351 357l5-7 2 9z"/>
+    <path d="M318 380v9M328 381v9M338 380v9" stroke="#8D6E63" stroke-width="3.4" stroke-linecap="round"/>
+  </g>
+  <g fill="#87685C">
+    <ellipse cx="392" cy="378" rx="15" ry="9.5"/>
+    <circle cx="406" cy="371" r="7.6"/>
+    <path d="M402 365l-2-7 8 4.5z"/>
+    <path d="M411 365l5-6 1.5 8z"/>
+    <path d="M382 385v8M391 386v8M400 385v8" stroke="#87685C" stroke-width="3.2" stroke-linecap="round"/>
+  </g>
+</svg>

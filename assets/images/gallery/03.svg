@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450">
+  <rect width="600" height="450" fill="#F0F6E6"/>
+  <circle cx="110" cy="80" r="30" fill="#EBD59A" opacity=".9"/>
+
+  <path d="M0 250Q200 180 400 240Q500 268 600 232V450H0Z" fill="#B9DA8E"/>
+  <path d="M0 330Q260 270 520 326Q570 338 600 322V450H0Z" fill="#8FC06A"/>
+
+  <!-- 野餐篮 -->
+  <rect x="248" y="246" width="104" height="66" rx="11" fill="#B08E80" stroke="#8D6E63" stroke-width="3.2"/>
+  <path d="M258 250q42-46 84 0" fill="none" stroke="#8D6E63" stroke-width="4"/>
+  <path d="M262 272h76M262 292h76" stroke="#8D6E63" stroke-width="2.4" opacity=".7"/>
+
+  <!-- 野餐布 -->
+  <rect x="140" y="306" width="320" height="112" rx="9" fill="#ECE4C8" stroke="#C9B98C" stroke-width="2.5"/>
+  <g stroke="#B08E80" stroke-width="2.2" opacity=".6">
+    <path d="M200 306V418M260 306V418M320 306V418M380 306V418M440 306V418"/>
+    <path d="M140 344H460M140 382H460"/>
+  </g>
+
+  <!-- 两个杯子 -->
+  <g fill="#F2F7EA" stroke="#8D6E63" stroke-width="3" stroke-linejoin="round">
+    <path d="M182 330h34l-5 30q-12 6-24 0z"/>
+    <path d="M384 330h34l-5 30q-12 6-24 0z"/>
+  </g>
+  <ellipse cx="199" cy="330" rx="17" ry="4.5" fill="#A9C77F" stroke="#8D6E63" stroke-width="2.4"/>
+  <ellipse cx="401" cy="330" rx="17" ry="4.5" fill="#A9C77F" stroke="#8D6E63" stroke-width="2.4"/>
+
+  <!-- 落叶 -->
+  <path d="M120 300c-11-2-16-11-12-21 11 2 15 11 12 21z" fill="#7CB342"/>
+  <path d="M490 286c10-5 10-16 2-23-10 6-11 17-2 23z" fill="#7CB342"/>
+</svg>

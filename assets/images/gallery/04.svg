@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+  <!-- 窗外天色 -->
+  <rect x="60" y="60" width="480" height="416" fill="#DCEBD2"/>
+  <circle cx="470" cy="130" r="34" fill="#F0E2B0" opacity=".9"/>
+  <ellipse cx="200" cy="150" rx="60" ry="16" fill="#FFFFFF" opacity=".6"/>
+
+  <!-- 窗框 -->
+  <path d="M60 60H540V476H60Z" fill="none" stroke="#B08E80" stroke-width="16"/>
+  <path d="M300 60V476M60 288H540" stroke="#B08E80" stroke-width="14"/>
+
+  <!-- 窗台 -->
+  <rect x="36" y="470" width="528" height="28" rx="4" fill="#C2A294" stroke="#8D6E63" stroke-width="3"/>
+
+  <!-- 花盆 -->
+  <path d="M256 392h88l-14 80h-60z" fill="#B08E80" stroke="#8D6E63" stroke-width="3.4" stroke-linejoin="round"/>
+  <rect x="250" y="384" width="100" height="14" rx="4" fill="#C2A294" stroke="#8D6E63" stroke-width="3"/>
+
+  <!-- 薄荷 -->
+  <g stroke="#5B8C2A" stroke-width="3" fill="none" stroke-linecap="round">
+    <path d="M300 388v-70M276 388v-52M324 388v-56M262 390v-36M338 390v-40"/>
+  </g>
+  <g fill="#7CB342">
+    <path d="M296 326c-13-2-19-12-15-24 13 2 18 12 15 24z"/>
+    <path d="M306 318c12-6 12-17 3-25-12 6-13 18-3 25z"/>
+    <path d="M272 342c-12-2-17-11-13-22 12 2 16 11 13 22z"/>
+    <path d="M328 338c11-5 11-16 3-23-11 6-12 17-3 23z"/>
+    <path d="M258 356c-10-2-15-9-11-19 10 2 14 9 11 19z"/>
+    <path d="M342 352c10-4 10-14 3-21-10 5-11 16-3 21z"/>
+  </g>
+</svg>

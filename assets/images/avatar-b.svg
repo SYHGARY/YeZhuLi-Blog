@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" rx="18" fill="#E7F0D8"/>
+
+  <!-- 耳后小花 -->
+  <g transform="translate(156 40)">
+    <circle cx="0" cy="-12" r="8" fill="#E8CE6E"/>
+    <circle cx="11" cy="-3" r="8" fill="#E8CE6E"/>
+    <circle cx="7" cy="11" r="8" fill="#E8CE6E"/>
+    <circle cx="-7" cy="11" r="8" fill="#E8CE6E"/>
+    <circle cx="-11" cy="-3" r="8" fill="#E8CE6E"/>
+    <circle cx="0" cy="0" r="5.5" fill="#8D6E63"/>
+  </g>
+
+  <!-- 耳朵 -->
+  <path d="M64 72 L56 38 L88 58 Z" fill="#9E8579" stroke="#6E564C" stroke-width="3.5" stroke-linejoin="round"/>
+  <path d="M136 72 L144 38 L112 58 Z" fill="#9E8579" stroke="#6E564C" stroke-width="3.5" stroke-linejoin="round"/>
+  <path d="M66 64 L62 48 L78 57 Z" fill="#B9A196"/>
+  <path d="M134 64 L138 48 L122 57 Z" fill="#B9A196"/>
+
+  <!-- 头顶鬃毛 -->
+  <path d="M86 48l4-10M100 45l1-11M114 48l-3-10" fill="none" stroke="#6E564C" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- 头 -->
+  <path d="M52 98C52 60 80 52 100 52s48 8 48 46c0 36-20 60-48 60s-48-24-48-60z"
+        fill="#9E8579" stroke="#6E564C" stroke-width="3.5"/>
+
+  <!-- 眼睛 -->
+  <circle cx="83" cy="98" r="4.6" fill="#3E322E"/>
+  <circle cx="117" cy="98" r="4.6" fill="#3E322E"/>
+
+  <!-- 鼻子 -->
+  <ellipse cx="100" cy="130" rx="27" ry="19" fill="#B49C91" stroke="#6E564C" stroke-width="3"/>
+  <ellipse cx="90" cy="132" rx="3.6" ry="5.2" fill="#6E564C"/>
+  <ellipse cx="110" cy="132" rx="3.6" ry="5.2" fill="#6E564C"/>
+
+  <!-- 小獠牙 -->
+  <path d="M76 140q-7 2-9-5" fill="none" stroke="#F2EDE9" stroke-width="3.2" stroke-linecap="round"/>
+  <path d="M124 140q7 2 9-5" fill="none" stroke="#F2EDE9" stroke-width="3.2" stroke-linecap="round"/>
+</svg>

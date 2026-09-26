@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450">
+  <rect width="600" height="450" fill="#EFF5E5"/>
+  <circle cx="500" cy="78" r="28" fill="#EBD59A" opacity=".9"/>
+  <ellipse cx="160" cy="90" rx="52" ry="14" fill="#FFFFFF" opacity=".6"/>
+
+  <path d="M0 292Q300 228 600 282V450H0Z" fill="#A9D07E"/>
+
+  <!-- 小河 -->
+  <path d="M600 208C500 258 480 302 380 332C280 360 182 372 58 422H122C222 382 322 370 412 344C502 318 522 270 600 240Z" fill="#B9CEC2"/>
+  <path d="M596 226C516 266 498 304 414 330" fill="none" stroke="#FFFFFF" stroke-width="2.6" opacity=".6" stroke-linecap="round"/>
+
+  <!-- 土路 -->
+  <path d="M0 384Q180 352 332 374" fill="none" stroke="#D8C49A" stroke-width="13" stroke-linecap="round" opacity=".9"/>
+
+  <!-- 一小段篱笆 -->
+  <rect x="26" y="330" width="120" height="9" fill="#B08E80" stroke="#8D6E63" stroke-width="2"/>
+  <rect x="26" y="372" width="120" height="9" fill="#B08E80" stroke="#8D6E63" stroke-width="2"/>
+  <g fill="#C2A294" stroke="#8D6E63" stroke-width="2" stroke-linejoin="round">
+    <path d="M34 308L44 294L54 308L54 410L34 410Z"/>
+    <path d="M76 308L86 294L96 308L96 410L76 410Z"/>
+    <path d="M118 308L128 294L138 308L138 410L118 410Z"/>
+  </g>
+</svg>

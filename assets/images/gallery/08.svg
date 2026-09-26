@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450">
+  <rect width="600" height="450" fill="#EEF4E8"/>
+  <circle cx="470" cy="86" r="34" fill="#F0EBD8" opacity=".85"/>
+
+  <path d="M0 276L140 150L250 250L380 130L490 248L600 176V450H0Z" fill="#BCC9A9"/>
+  <path d="M0 330L130 214L270 322L420 206L560 318L600 290V450H0Z" fill="#90AB78"/>
+  <path d="M0 398Q260 344 520 392Q570 404 600 390V450H0Z" fill="#7AA25F"/>
+
+  <!-- 松树 -->
+  <g fill="#5E8248">
+    <path d="M96 404l-15 0 15-28z"/><path d="M110 386l-22 0 22-30z"/>
+    <path d="M470 404l-15 0 15-28z"/><path d="M484 388l-22 0 22-28z"/>
+  </g>
+  <path d="M104 404v16M478 404v16" stroke="#5E8248" stroke-width="4"/>
+
+  <!-- 信号塔 -->
+  <path d="M264 396L298 148L336 396" fill="none" stroke="#6E564C" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M298 148V120" stroke="#6E564C" stroke-width="4" stroke-linecap="round"/>
+  <g stroke="#6E564C" stroke-width="2.8">
+    <path d="M272 340H328M280 284H318M287 228H310"/>
+    <path d="M272 340L328 396M328 340L272 396"/>
+    <path d="M280 284L318 340M318 284L280 340"/>
+    <path d="M287 228L310 284M310 228L287 284"/>
+    <path d="M292 180L305 228M305 180L292 228"/>
+  </g>
+  <circle cx="298" cy="116" r="6" fill="#C26B5A"/>
+</svg>

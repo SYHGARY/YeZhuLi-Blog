@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <rect width="800" height="450" fill="#F7F5EC"/>
+  <circle cx="400" cy="252" r="158" fill="#E8F5E9"/>
+
+  <!-- 小图标：叶子 -->
+  <path d="M176 158c-15-3-22-15-17-29 15 3 22 15 17 29z" fill="#7CB342"/>
+  <path d="M166 152c2-9 2-17 0-24" stroke="#F7F5EC" stroke-width="2.4" fill="none"/>
+  <!-- 小图标：音符 -->
+  <path d="M612 128v44q0 12-14 12-12 0-12-10t12-12q7-1 14 3v-25l34-8v32"
+        fill="none" stroke="#8D6E63" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 小图标：小书 -->
+  <path d="M120 312h44v40h-44z" fill="#E8F5E9" stroke="#7CB342" stroke-width="3.2" stroke-linejoin="round"/>
+  <path d="M142 312v40" stroke="#7CB342" stroke-width="2.6"/>
+  <!-- 小图标：小太阳 -->
+  <circle cx="652" cy="330" r="13" fill="none" stroke="#8D6E63" stroke-width="3.2"/>
+  <path d="M652 304v8M652 348v8M626 330h8M670 330h8M634 312l6 6M664 342l6 6M670 312l-6 6M640 342l-6 6"
+        stroke="#8D6E63" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- 茶杯热气 -->
+  <path d="M356 214q-10-16 5-30M400 210q-10-16 5-30M444 214q-10-16 5-30"
+        fill="none" stroke="#8D6E63" stroke-width="3" stroke-linecap="round" opacity=".6"/>
+
+  <!-- 杯托 -->
+  <ellipse cx="400" cy="366" rx="124" ry="22" fill="#DCE8D2" stroke="#8D6E63" stroke-width="3.2"/>
+  <!-- 杯身 -->
+  <path d="M298 246h204l-18 102q-84 24-168 0z" fill="#F2F7EA" stroke="#8D6E63" stroke-width="3.8" stroke-linejoin="round"/>
+  <path d="M502 262q46 6 36 48q-7 28-40 26" fill="none" stroke="#8D6E63" stroke-width="3.8"/>
+  <ellipse cx="400" cy="248" rx="102" ry="15" fill="#A9C77F" stroke="#8D6E63" stroke-width="3.4"/>
+</svg>

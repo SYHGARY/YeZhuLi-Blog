@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+  <!-- 墙 -->
+  <rect width="600" height="600" fill="#F0EDE3"/>
+
+  <!-- 台灯 -->
+  <circle cx="128" cy="250" r="70" fill="#F3E4BC" opacity=".7"/>
+  <path d="M128 300v110" stroke="#8D6E63" stroke-width="5" stroke-linecap="round"/>
+  <ellipse cx="128" cy="416" rx="40" ry="10" fill="#B08E80" stroke="#8D6E63" stroke-width="3"/>
+  <path d="M92 232L112 168H144L164 232Z" fill="#E9D7AE" stroke="#8D6E63" stroke-width="3.2" stroke-linejoin="round"/>
+
+  <!-- 桌面 -->
+  <rect x="0" y="420" width="600" height="180" fill="#C2A294"/>
+  <path d="M0 420H600" stroke="#8D6E63" stroke-width="4"/>
+
+  <!-- 翻开的书 -->
+  <path d="M176 392L294 372V456L182 470Z" fill="#F7F4EA" stroke="#8D6E63" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M306 372L424 392L418 470L306 456Z" fill="#F7F4EA" stroke="#8D6E63" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M300 372V458" stroke="#8D6E63" stroke-width="3"/>
+  <g stroke="#B7A98E" stroke-width="2.4" stroke-linecap="round">
+    <path d="M198 404l78-10M200 422l78-10M202 440l76-10"/>
+    <path d="M322 394l78 10M322 412l78 10M322 430l76 10"/>
+  </g>
+
+  <!-- 杯子 -->
+  <path d="M470 360h58l-8 52q-21 10-42 0z" fill="#F2F7EA" stroke="#8D6E63" stroke-width="3.2" stroke-linejoin="round"/>
+  <path d="M528 372q26 4 20 28q-4 16-22 14" fill="none" stroke="#8D6E63" stroke-width="3"/>
+  <ellipse cx="499" cy="360" rx="29" ry="7" fill="#A9C77F" stroke="#8D6E63" stroke-width="2.6"/>
+
+  <!-- 小叶 -->
+  <path d="M150 470c-10-2-15-10-12-20 10 2 14 10 12 20z" fill="#7CB342"/>
+</svg>

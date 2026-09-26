@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+  <rect width="600" height="600" fill="#EFE9D9"/>
+
+  <!-- 圆桌 -->
+  <circle cx="300" cy="320" r="250" fill="#E3D5B4" stroke="#C4B088" stroke-width="3"/>
+
+  <!-- 两个盘子 -->
+  <circle cx="196" cy="286" r="78" fill="#F7F4EA" stroke="#C9BCA2" stroke-width="3"/>
+  <circle cx="404" cy="286" r="78" fill="#F7F4EA" stroke="#C9BCA2" stroke-width="3"/>
+
+  <!-- 吐司 -->
+  <path d="M168 262h44l-6 40h-32z" fill="#D8B26A" stroke="#B08E5E" stroke-width="2.6" stroke-linejoin="round"/>
+  <path d="M376 262h44l-6 40h-32z" fill="#D8B26A" stroke="#B08E5E" stroke-width="2.6" stroke-linejoin="round"/>
+
+  <!-- 两杯喝的 -->
+  <circle cx="208" cy="404" r="30" fill="#F2F7EA" stroke="#8D6E63" stroke-width="3"/>
+  <circle cx="208" cy="404" r="18" fill="#A9C77F"/>
+  <circle cx="392" cy="404" r="30" fill="#F2F7EA" stroke="#8D6E63" stroke-width="3"/>
+  <circle cx="392" cy="404" r="18" fill="#C7A87E"/>
+
+  <!-- 中间小叶点缀 -->
+  <path d="M300 236c-13-2-19-12-15-25 13 2 18 12 15 25z" fill="#7CB342"/>
+  <path d="M286 244c11-6 11-17 3-25-11 6-12 18-3 25z" fill="#8FC26A"/>
+
+  <!-- 餐具 -->
+  <path d="M120 300v90M114 300h12M480 300v90M474 300h12"
+        stroke="#B08E80" stroke-width="3.4" stroke-linecap="round"/>
+</svg>

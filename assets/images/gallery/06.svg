@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450">
+  <defs>
+    <linearGradient id="dusk" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F3EBD8"/>
+      <stop offset="1" stop-color="#E4D3AC"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="450" fill="url(#dusk)"/>
+
+  <!-- 夕阳 -->
+  <circle cx="130" cy="292" r="48" fill="#E8B86D" opacity=".9"/>
+  <path d="M40 300H220" stroke="#D8A85C" stroke-width="3" opacity=".6"/>
+
+  <!-- 远处篱笆 -->
+  <rect x="0" y="236" width="600" height="8" fill="#C2A294"/>
+  <g fill="#C2A294">
+    <path d="M60 214l8-12 8 12v26H60zM150 214l8-12 8 12v26h-16zM240 214l8-12 8 12v26h-16z"/>
+    <path d="M330 214l8-12 8 12v26h-16zM420 214l8-12 8 12v26h-16zM510 214l8-12 8 12v26h-16z"/>
+  </g>
+
+  <!-- 菜地 -->
+  <path d="M0 262Q300 246 600 262V450H0Z" fill="#A9D07E"/>
+
+  <!-- 三垄菜 -->
+  <g>
+    <path d="M40 330q260-40 520 0" fill="none" stroke="#86B45E" stroke-width="13" stroke-linecap="round"/>
+    <path d="M40 380q260-40 520 0" fill="none" stroke="#86B45E" stroke-width="13" stroke-linecap="round"/>
+    <path d="M60 428q240-36 480 0" fill="none" stroke="#86B45E" stroke-width="13" stroke-linecap="round"/>
+  </g>
+  <g fill="#5B8C2A">
+    <path d="M110 312c-9-2-13-9-10-18 9 2 12 9 10 18zM230 296c-9-2-13-9-10-18 9 2 12 9 10 18z"/>
+    <path d="M360 292c-9-2-13-9-10-18 9 2 12 9 10 18zM480 302c-9-2-13-9-10-18 9 2 12 9 10 18z"/>
+    <path d="M150 362c-9-2-13-9-10-18 9 2 12 9 10 18zM300 350c-9-2-13-9-10-18 9 2 12 9 10 18z"/>
+    <path d="M450 358c-9-2-13-9-10-18 9 2 12 9 10 18zM120 414c-9-2-13-9-10-18 9 2 12 9 10 18z"/>
+    <path d="M280 404c-9-2-13-9-10-18 9 2 12 9 10 18zM440 412c-9-2-13-9-10-18 9 2 12 9 10 18z"/>
+  </g>
+</svg>

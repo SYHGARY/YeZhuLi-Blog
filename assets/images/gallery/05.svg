@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750">
+  <rect width="600" height="750" fill="#DDE4D6"/>
+
+  <!-- 墙面 -->
+  <rect x="0" y="176" width="600" height="574" fill="#E9E3D5"/>
+
+  <!-- 屋顶 -->
+  <path d="M0 0H600L542 178H58Z" fill="#B08E80" stroke="#8D6E63" stroke-width="3.4" stroke-linejoin="round"/>
+  <path d="M70 150H530" stroke="#8D6E63" stroke-width="3" opacity=".65"/>
+  <path d="M110 104H490M150 58H450" stroke="#9A7A6C" stroke-width="3" opacity=".55"/>
+
+  <!-- 雨棚 -->
+  <path d="M120 300H480L452 368H148Z" fill="#C2A294" stroke="#8D6E63" stroke-width="3.2" stroke-linejoin="round"/>
+
+  <!-- 雨滴 -->
+  <g stroke="#93A99C" stroke-width="3.4" stroke-linecap="round">
+    <path d="M70 210l-6 30M120 230l-6 30M180 214l-6 30M240 232l-6 30M300 212l-6 30"/>
+    <path d="M360 230l-6 30M420 214l-6 30M480 232l-6 30M540 212l-6 30"/>
+    <path d="M90 330l-6 30M200 340l-6 30M320 330l-6 30M440 342l-6 30M556 330l-6 30"/>
+    <path d="M60 470l-6 30M170 480l-6 30M290 470l-6 30M410 482l-6 30M530 470l-6 30"/>
+    <path d="M110 590l-6 26M250 600l-6 26M390 590l-6 26M520 600l-6 26"/>
+  </g>
+
+  <!-- 吊盆 -->
+  <path d="M300 368v26" stroke="#8D6E63" stroke-width="3"/>
+  <path d="M268 394h64l-9 44h-46z" fill="#B08E80" stroke="#8D6E63" stroke-width="3" stroke-linejoin="round"/>
+  <g fill="#7CB342">
+    <path d="M286 392c-11-2-16-10-13-21 11 2 15 10 13 21z"/>
+    <path d="M314 388c11-5 11-15 3-22-11 6-12 17-3 22z"/>
+  </g>
+
+  <!-- 水洼 -->
+  <ellipse cx="300" cy="706" rx="180" ry="24" fill="#B9CEC2"/>
+  <ellipse cx="300" cy="700" rx="120" ry="12" fill="#CBDAD0" opacity=".8"/>
+</svg>
