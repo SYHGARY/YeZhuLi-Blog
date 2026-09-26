@@ -18,11 +18,10 @@
   <div class="loading" id="loading">
     <div class="boar">🐗</div>
     <p>正在打开后台…</p>
+    <p style="font-size:12px;color:#aaa" id="hint">正在加载，请稍候</p>
   </div>
 
   <script>
-    // 优先加载本地文件（把 decap-cms.js 放到 admin/ 目录即可离线），
-    // 失败再试国内 CDN
     var CDNS = [
       'decap-cms.js',
       'https://cdn.staticfile.net/decap-cms/3.1.12/decap-cms.min.js',
@@ -30,6 +29,8 @@
       'https://cdn.jsdelivr.net/npm/decap-cms@3.1.12/dist/decap-cms.js'
     ];
     var i = 0;
+    var TIMEOUT = 8000;
+
     function loadNext() {
       if (i >= CDNS.length) {
         document.getElementById('loading').innerHTML =
@@ -37,15 +38,28 @@
           '<div class="err">' +
           '<p>请手动下载后台主文件：</p>' +
           '<p>1. 在能上网的电脑打开 <a href="https://unpkg.com/decap-cms@3.1.12/dist/decap-cms.js" target="_blank">这个链接</a></p>' +
-          '<p>2. 右键 → 另存为，保存到你项目的 <code>admin/decap-cms.js</code></p>' +
-          '<p>3. 推到 GitHub，重新部署后刷新 /admin/</p>' +
+          '<p>2. 右键 → 另存为，保存为 <code>decap-cms.js</code></p>' +
+          '<p>3. 放到项目的 <code>admin/</code> 文件夹，推到 GitHub</p>' +
           '</div>';
         return;
       }
+      var url = CDNS[i++];
+      document.getElementById('hint').textContent = '正在加载第 ' + i + '/' + CDNS.length + ' 个源…';
+      var done = false;
       var s = document.createElement('script');
-      s.src = CDNS[i++];
-      s.onload = function () { /* Decap 自动接管页面 */ };
-      s.onerror = loadNext;
+      var timer = setTimeout(function () {
+        if (!done) { done = true; s.parentNode && s.parentNode.removeChild(s); loadNext(); }
+      }, TIMEOUT);
+      s.onload = function () {
+        if (done) return; done = true; clearTimeout(timer);
+        // Decap 自动初始化
+      };
+      s.onerror = function () {
+        if (done) return; done = true; clearTimeout(timer);
+        s.parentNode && s.parentNode.removeChild(s);
+        loadNext();
+      };
+      s.src = url;
       document.head.appendChild(s);
     }
     loadNext();
