@@ -7,62 +7,35 @@
   <style>
     body{margin:0;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
          background:#E8F5E9;display:flex;align-items:center;justify-content:center;min-height:100vh;color:#2E4D20}
-    .loading{text-align:center;padding:40px}
+    .box{text-align:center;padding:40px;max-width:480px}
     .boar{font-size:48px;margin-bottom:16px}
-    .err{max-width:460px;font-size:14px;line-height:1.9;color:#8D6E63;text-align:left}
-    .err a{color:#7CB342}
-    code{background:#fff;padding:2px 6px;border-radius:4px;font-size:13px}
+    .step{font-size:14px;line-height:2;color:#2E4D20;text-align:left;margin:20px 0}
+    code{background:#fff;padding:2px 6px;border-radius:4px;font-size:13px;color:#8D6E63}
   </style>
 </head>
 <body>
-  <div class="loading" id="loading">
+  <div class="box" id="box">
     <div class="boar">🐗</div>
     <p>正在打开后台…</p>
-    <p style="font-size:12px;color:#aaa" id="hint">正在加载，请稍候</p>
   </div>
 
   <script>
-    var CDNS = [
-      'decap-cms.js',
-      'https://cdn.staticfile.net/decap-cms/3.1.12/decap-cms.min.js',
-      'https://lib.baomitu.com/decap-cms/3.1.12/decap-cms.min.js',
-      'https://cdn.jsdelivr.net/npm/decap-cms@3.1.12/dist/decap-cms.js'
-    ];
-    var i = 0;
-    var TIMEOUT = 8000;
-
-    function loadNext() {
-      if (i >= CDNS.length) {
-        document.getElementById('loading').innerHTML =
-          '<div class="boar">🐗</div><p><strong>后台没加载出来</strong></p>' +
-          '<div class="err">' +
-          '<p>请手动下载后台主文件：</p>' +
-          '<p>1. 在能上网的电脑打开 <a href="https://unpkg.com/decap-cms@3.1.12/dist/decap-cms.js" target="_blank">这个链接</a></p>' +
-          '<p>2. 右键 → 另存为，保存为 <code>decap-cms.js</code></p>' +
-          '<p>3. 放到项目的 <code>admin/</code> 文件夹，推到 GitHub</p>' +
-          '</div>';
-        return;
-      }
-      var url = CDNS[i++];
-      document.getElementById('hint').textContent = '正在加载第 ' + i + '/' + CDNS.length + ' 个源…';
-      var done = false;
-      var s = document.createElement('script');
-      var timer = setTimeout(function () {
-        if (!done) { done = true; s.parentNode && s.parentNode.removeChild(s); loadNext(); }
-      }, TIMEOUT);
-      s.onload = function () {
-        if (done) return; done = true; clearTimeout(timer);
-        // Decap 自动初始化
-      };
-      s.onerror = function () {
-        if (done) return; done = true; clearTimeout(timer);
-        s.parentNode && s.parentNode.removeChild(s);
-        loadNext();
-      };
-      s.src = url;
-      document.head.appendChild(s);
-    }
-    loadNext();
+    var s = document.createElement('script');
+    s.src = 'decap-cms.js?t=' + Date.now();
+    s.onload = function () { /* Decap 自动接管页面 */ };
+    s.onerror = function () {
+      document.getElementById('box').innerHTML =
+        '<div class="boar">🐗</div>' +
+        '<p><strong>缺一个文件：admin/decap-cms.js</strong></p>' +
+        '<div class="step">' +
+        '<p>请按下面操作：</p>' +
+        '<p>1. 在浏览器打开 <a href="https://unpkg.com/decap-cms@3.1.12/dist/decap-cms.js" target="_blank">https://unpkg.com/decap-cms@3.1.12/dist/decap-cms.js</a></p>' +
+        '<p>2. 页面会显示一大段代码，按 <code>Ctrl+S</code> 保存</p>' +
+        '<p>3. 文件名填 <code>decap-cms.js</code>，保存到你项目的 <code>admin/</code> 文件夹</p>' +
+        '<p>4. 推到 GitHub，等 Netlify 重新部署后刷新本页</p>' +
+        '</div>';
+    };
+    document.head.appendChild(s);
   </script>
 </body>
 </html>
