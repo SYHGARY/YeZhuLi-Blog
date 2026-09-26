@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: your-name/wild-boar-hedge   # ← 改成你 GitHub 仓库的 用户名/仓库名
+  repo: SYHGARY/YeZhuLi-Blog 
   branch: main
 
 # 媒体（照片）上传到这个文件夹
@@ -8,7 +8,7 @@ media_folder: assets/images/photos
 public_folder: /
 
 # 发布后显示的网站地址
-site_url: https://your-site.netlify.app
+site_url: https://boarhedge.netlify.app
 
 publish_mode: editorial_workflow
 
