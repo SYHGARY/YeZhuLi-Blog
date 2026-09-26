@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: SYHGARY/YeZhuLi-Blog 
+  name: git-gateway
   branch: main
 
 # 媒体（照片）上传到这个文件夹
