@@ -84,7 +84,7 @@
     var file = p.file || ('posts/' + p.slug + '.md');
     return fetch(file, { cache: 'no-cache' })
       .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
-      .then(function (md) { p.__body = MM ? MM.render(md) : esc(p.excerpt || ''); return p; })
+      .then(function (md) { var body = md.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, ''); p.__body = MM ? MM.render(body) : esc(p.excerpt || ''); return p; })
       .catch(function () { p.__body = '<p>' + esc(p.excerpt || '') + '</p>'; return p; });
   }
 

@@ -1,0 +1,15 @@
+# Netlify 部署配置
+# 每次发布自动运行 build-index.js，从 posts/*.md 生成 index.json
+
+[build]
+  command = "node scripts/build-index.js"
+  publish = "."
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# 后台路径
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Frame-Options = ""

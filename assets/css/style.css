@@ -201,7 +201,8 @@ hr{border:none;border-top:1px dashed var(--line);margin:2.4em 0}
 main .wrap{position:relative}
 main .wrap::before{
   content:"";position:absolute;top:-40px;left:50%;transform:translateX(-50%);
-  width:780px;height:320px;pointer-events:none;z-index:0;
+  /* 必须跟着视口收窄，否则窄屏下会左右溢出、把整页撑宽 */
+  width:min(780px,100%);height:320px;pointer-events:none;z-index:0;
   background:radial-gradient(closest-side,rgba(169,210,127,.18),transparent);
 }
 html[data-theme="dark"] main .wrap::before{
@@ -300,7 +301,10 @@ main{padding-top:calc(var(--nav-h) + 42px);padding-bottom:24px;min-height:72vh;p
 /* 封面没有 page-bg，不需要 main 的层级；留着它会把鼠标光晕整个盖住 */
 .cover-main{padding:0;min-height:auto;z-index:auto}
 .cover{
-  position:relative;min-height:100vh;
+  position:relative;
+  min-height:100vh;
+  /* 手机地址栏会占掉一截，100vh 比实际可见区高；svh 才是"地址栏展开时"的高度 */
+  min-height:100svh;
   display:flex;align-items:center;justify-content:center;
   overflow:hidden;
   background:var(--cover-sky);
@@ -637,7 +641,7 @@ html[data-theme="dark"] .cover-title{text-shadow:0 2px 22px rgba(0,0,0,.55)}
 .cover-about:hover{color:var(--green-mid);border-color:var(--green-mid)}
 
 .cover-scroll{
-  position:absolute;left:50%;bottom:30px;transform:translateX(-50%);
+  position:absolute;left:50%;bottom:calc(30px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);
   display:flex;flex-direction:column;align-items:center;gap:7px;
   color:var(--ink-2);z-index:2;
   text-shadow:0 1px 6px rgba(255,255,255,.75);
@@ -649,7 +653,9 @@ html[data-theme="dark"] .cover-scroll{text-shadow:0 1px 6px rgba(0,0,0,.7)}
 @keyframes wheel{0%{transform:translateY(0);opacity:1}80%{transform:translateY(11px);opacity:0}100%{opacity:0}}
 .cover-scroll-text{font-size:11px;letter-spacing:.3em;text-indent:.3em}
 .cover-credit{
-  position:absolute;left:0;right:0;bottom:8px;text-align:center;
+  position:absolute;left:0;right:0;
+  bottom:calc(8px + env(safe-area-inset-bottom,0px));
+  text-align:center;
   font-size:11.5px;color:var(--ink-2);margin:0;z-index:2;
   text-shadow:0 1px 5px rgba(255,255,255,.7);
 }
@@ -784,7 +790,7 @@ html[data-theme="dark"] .cover-credit{text-shadow:0 1px 5px rgba(0,0,0,.7)}
 .entry-images a:hover img{transform:scale(1.06)}
 
 /* ---------- 8. Markdown 正文 ---------- */
-.prose{color:var(--ink)}
+.prose{color:var(--ink);overflow-wrap:break-word}
 .prose h2{
   font-family:var(--font-serif);font-weight:700;
   font-size:19px;margin:1.8em 0 .8em;line-height:1.5;
@@ -875,9 +881,10 @@ html[data-theme="dark"] .cover-credit{text-shadow:0 1px 5px rgba(0,0,0,.7)}
 .person:hover{transform:translateY(-6px);box-shadow:var(--shadow-m)}
 /* 卡片底部也长一片草，跟封面/页脚呼应 */
 .person::after{
-  content:"";position:absolute;left:0;right:0;bottom:0;height:20px;
+  content:"";position:absolute;left:0;right:0;bottom:0;height:24px;
   background-image:var(--grass-strip);
-  background-repeat:repeat-x;background-position:bottom center;background-size:380px 20px;
+  /* 别缩太小，否则草叶会糊成一排锯齿 */
+  background-repeat:repeat-x;background-position:bottom center;background-size:520px 24px;
   opacity:.3;pointer-events:none;
 }
 .person .avatar{
@@ -1154,7 +1161,12 @@ html[data-theme="dark"] .fboar--light{--fb-body:#FBF3E6;--fb-belly:#FFFFFF;--fb-
   .nav-menu.is-open{opacity:1;visibility:visible;transform:none}
   .nav-menu a{padding:13px 14px;border-radius:var(--r-s);font-size:15px}
   .nav-menu a.active{background:var(--mint);color:var(--green-deep);box-shadow:none}
-  .theme-toggle{align-self:flex-start;margin:10px 0 0;width:auto;border-radius:999px;padding:0 18px;gap:8px;height:40px}
+  /* 基础样式是 display:grid，这里必须改回 flex，否则图标和「切换主题」会竖排撑破按钮 */
+  .theme-toggle{
+    align-self:flex-start;margin:10px 0 0;width:auto;height:40px;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:999px;padding:0 18px;gap:8px;
+  }
   .theme-toggle::after{content:"切换主题";font-size:13px}
   .couple{grid-template-columns:1fr}
 }
@@ -1172,6 +1184,13 @@ html[data-theme="dark"] .fboar--light{--fb-body:#FBF3E6;--fb-belly:#FFFFFF;--fb-
   .ed-cat{margin:0 0 0 auto}
   .entry-card{padding:20px 18px}
   .entry-images.n1 a{max-width:100%}
+  /* 表格在窄屏会被挤成一字一行，改成横向可滑 */
+  .prose table{
+    display:block;width:100%;
+    overflow-x:auto;-webkit-overflow-scrolling:touch;
+    white-space:nowrap;font-size:12.5px;
+  }
+  .prose th,.prose td{padding:8px 11px}
   .story{padding:28px 24px}
   .head-sprig{display:none}
   .ed-dot::before{display:none}

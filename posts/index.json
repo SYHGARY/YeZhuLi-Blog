@@ -6,11 +6,32 @@
   },
   "posts": [
     {
+      "slug": "books-2025-spring",
+      "title": "春天读完的六本书，和四部电影",
+      "date": "2025-06-15",
+      "category": "读书观影",
+      "tags": [
+        "书单",
+        "电影",
+        "春天"
+      ],
+      "author": "阿篱",
+      "cover": "assets/images/covers/books-2025-spring.svg",
+      "images": [
+        "assets/images/covers/books-2025-spring.svg",
+        "assets/images/gallery/07.svg"
+      ],
+      "excerpt": "拖到夏天才整理。有几本很喜欢，有几本读完就忘了——记住的和忘掉的，大概都能说明点什么。"
+    },
+    {
       "slug": "hello-hedge",
       "title": "开篱第一篇：为什么我们要写博客",
       "date": "2025-08-02",
       "category": "日常",
-      "tags": ["开篇", "野猪篱"],
+      "tags": [
+        "开篇",
+        "野猪篱"
+      ],
       "author": "阿篱",
       "cover": "assets/images/covers/hello-hedge.svg",
       "images": [
@@ -26,7 +47,11 @@
       "title": "山里两天：把手机放进背包最底下",
       "date": "2025-07-19",
       "category": "旅行",
-      "tags": ["露营", "山里", "装备"],
+      "tags": [
+        "露营",
+        "山里",
+        "装备"
+      ],
       "author": "小野",
       "cover": "assets/images/covers/mountain-two-days.svg",
       "images": [
@@ -37,25 +62,33 @@
       "excerpt": "上山那天雾很大，能见度不到三十米。我们在半山腰扎了帐篷，煮了一锅泡面，然后发现忘了带筷子。"
     },
     {
-      "slug": "books-2025-spring",
-      "title": "春天读完的六本书，和四部电影",
-      "date": "2025-06-15",
-      "category": "读书观影",
-      "tags": ["书单", "电影", "春天"],
-      "author": "阿篱",
-      "cover": "assets/images/covers/books-2025-spring.svg",
-      "images": [
-        "assets/images/covers/books-2025-spring.svg",
-        "assets/images/gallery/07.svg"
+      "slug": "spring-walk",
+      "title": "沿着河走了九公里",
+      "date": "2025-04-06",
+      "category": "旅行",
+      "tags": [
+        "散步",
+        "春天",
+        "河边"
       ],
-      "excerpt": "拖到夏天才整理。有几本很喜欢，有几本读完就忘了——记住的和忘掉的，大概都能说明点什么。"
+      "author": "小野",
+      "cover": "assets/images/covers/spring-walk.svg",
+      "images": [
+        "assets/images/covers/spring-walk.svg",
+        "assets/images/gallery/01.svg"
+      ],
+      "excerpt": "本来只打算走两公里就去吃饭，结果一路走到了桥那头。回来的时候饿了，把路边摊的烤肠吃了三根。"
     },
     {
       "slug": "tiny-things",
       "title": "让我开心的十件小事",
       "date": "2025-05-24",
       "category": "碎碎念",
-      "tags": ["日常", "清单", "小事"],
+      "tags": [
+        "日常",
+        "清单",
+        "小事"
+      ],
       "author": "阿篱",
       "cover": "assets/images/covers/tiny-things.svg",
       "images": [
@@ -64,20 +97,6 @@
         "assets/images/gallery/09.svg"
       ],
       "excerpt": "不是励志清单。就是一些便宜、随时能做、做完会舒服五分钟的事，适合在状态不好的时候翻出来做一件。"
-    },
-    {
-      "slug": "spring-walk",
-      "title": "沿着河走了九公里",
-      "date": "2025-04-06",
-      "category": "旅行",
-      "tags": ["散步", "春天", "河边"],
-      "author": "小野",
-      "cover": "assets/images/covers/spring-walk.svg",
-      "images": [
-        "assets/images/covers/spring-walk.svg",
-        "assets/images/gallery/01.svg"
-      ],
-      "excerpt": "本来只打算走两公里就去吃饭，结果一路走到了桥那头。回来的时候饿了，把路边摊的烤肠吃了三根。"
     }
   ]
 }

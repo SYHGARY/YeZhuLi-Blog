@@ -1,3 +1,20 @@
+---
+title: "开篱第一篇：为什么我们要写博客"
+date: 2025-08-02
+category: 日常
+tags:
+  - 开篇
+  - 野猪篱
+author: 阿篱
+cover: assets/images/covers/hello-hedge.svg
+images:
+  - assets/images/covers/hello-hedge.svg
+  - assets/images/gallery/02.svg
+  - assets/images/gallery/06.svg
+  - assets/images/gallery/04.svg
+excerpt: "手机相册越堆越乱，旅行回来整理一次就再也没打开过。所以干脆做个我们自己的小院子——不用给谁看，就是两个人的备忘录。"
+---
+
 开篱的这天下了小雨。我们把阳台的花盆挪了挪位置，然后坐下来，决定开始写这个博客。
 
 ## 为什么要写

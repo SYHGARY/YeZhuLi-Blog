@@ -1,0 +1,58 @@
+backend:
+  name: github
+  repo: your-name/wild-boar-hedge   # ← 改成你 GitHub 仓库的 用户名/仓库名
+  branch: main
+
+# 媒体（照片）上传到这个文件夹
+media_folder: assets/images/photos
+public_folder: /
+
+# 发布后显示的网站地址
+site_url: https://your-site.netlify.app
+
+publish_mode: editorial_workflow
+
+collections:
+  - name: posts
+    label: 文章
+    folder: posts
+    extension: md
+    format: frontmatter
+    create: true
+    delete: true
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    fields:
+      - { label: 标题, name: title, widget: string }
+      - { label: 日期, name: date, widget: date, date_format: 'YYYY-MM-DD', format: 'YYYY-MM-DD' }
+      - label: 分类
+        name: category
+        widget: select
+        options: [日常, 旅行, 读书观影, 碎碎念]
+        default: 日常
+      - label: 标签
+        name: tags
+        widget: list
+        summary: '{{fields.tag}}'
+        field: { label: 标签, name: tag, widget: string }
+        allow_add: true
+      - { label: 作者, name: author, widget: string, hint: '阿篱 或 小野' }
+      - label: 摘要
+        name: excerpt
+        widget: text
+        hint: '显示在时间线上的一句话简介'
+      - label: 封面图
+        name: cover
+        widget: image
+        required: false
+        media_folder: assets/images/photos
+        public_folder: /
+      - label: 文章图片
+        name: images
+        widget: list
+        summary: '{{fields.image}}'
+        field: { label: 图片, name: image, widget: image, media_folder: assets/images/photos, public_folder: / }
+        allow_add: true
+        required: false
+      - { label: 正文, name: body, widget: markdown }

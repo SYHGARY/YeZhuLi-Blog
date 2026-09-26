@@ -1,3 +1,19 @@
+---
+title: "沿着河走了九公里"
+date: 2025-04-06
+category: 旅行
+tags:
+  - 散步
+  - 春天
+  - 河边
+author: 小野
+cover: assets/images/covers/spring-walk.svg
+images:
+  - assets/images/covers/spring-walk.svg
+  - assets/images/gallery/01.svg
+excerpt: "本来只打算走两公里就去吃饭，结果一路走到了桥那头。回来的时候饿了，把路边摊的烤肠吃了三根。"
+---
+
 本来只打算走两公里就去吃饭，结果一路走到了桥那头。回来的时候饿了，把路边摊的烤肠吃了三根。
 
 ## 起因

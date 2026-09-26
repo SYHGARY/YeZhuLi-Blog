@@ -1,3 +1,19 @@
+---
+title: "春天读完的六本书，和四部电影"
+date: 2025-06-15
+category: 读书观影
+tags:
+  - 书单
+  - 电影
+  - 春天
+author: 阿篱
+cover: assets/images/covers/books-2025-spring.svg
+images:
+  - assets/images/covers/books-2025-spring.svg
+  - assets/images/gallery/07.svg
+excerpt: "拖到夏天才整理。有几本很喜欢，有几本读完就忘了——记住的和忘掉的，大概都能说明点什么。"
+---
+
 拖到夏天才整理。有几本很喜欢，有几本读完就忘了——记住的和忘掉的，大概都能说明点什么。
 
 ## 书

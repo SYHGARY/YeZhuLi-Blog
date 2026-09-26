@@ -1,3 +1,20 @@
+---
+title: "让我开心的十件小事"
+date: 2025-05-24
+category: 碎碎念
+tags:
+  - 日常
+  - 清单
+  - 小事
+author: 阿篱
+cover: assets/images/covers/tiny-things.svg
+images:
+  - assets/images/gallery/05.svg
+  - assets/images/covers/tiny-things.svg
+  - assets/images/gallery/09.svg
+excerpt: "不是励志清单。就是一些便宜、随时能做、做完会舒服五分钟的事，适合在状态不好的时候翻出来做一件。"
+---
+
 不是励志清单。就是一些便宜、随时能做、做完会舒服五分钟的事，适合在状态不好的时候翻出来做一件。
 
 ## 清单

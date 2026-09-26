@@ -1,3 +1,20 @@
+---
+title: "山里两天：把手机放进背包最底下"
+date: 2025-07-19
+category: 旅行
+tags:
+  - 露营
+  - 山里
+  - 装备
+author: 小野
+cover: assets/images/covers/mountain-two-days.svg
+images:
+  - assets/images/covers/mountain-two-days.svg
+  - assets/images/gallery/08.svg
+  - assets/images/gallery/03.svg
+excerpt: "上山那天雾很大，能见度不到三十米。我们在半山腰扎了帐篷，煮了一锅泡面，然后发现忘了带筷子。"
+---
+
 上山那天雾很大，能见度不到三十米。我们在半山腰扎了帐篷，煮了一锅泡面，然后发现忘了带筷子。
 
 ## 出发
