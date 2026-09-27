@@ -8,7 +8,8 @@ tags:
 author: 猪猪小宋
 excerpt: 想和猪猪小李记录下我们在一起的点点滴滴
 cover: /微信图片_20260925220008_52206_1.png
-images: []
+images:
+  - /鸡鸣寺.jpg
 ---
 ## 为什么要写
 
