@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: SYHGARY/你的仓库名
+  repo: SYHGARY/YeZhuLi-Blog
   branch: main
 
 # 媒体（照片）上传到这个文件夹
