@@ -38,8 +38,8 @@
     </button>
 
     <div class="nav-menu" id="navMenu">
-      <a href="index.html">入口</a>
-      <a href="blog.html">博客</a>
+      <a href="#cover" data-scroll-to="cover">入口</a>
+      <a href="#feed" data-scroll-to="feed">博客</a>
       <a href="about.html">关于</a>
       <button class="theme-toggle" type="button" data-theme-toggle>
         <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -58,7 +58,7 @@
 
 <!-- ================= 封面 ================= -->
 <main class="cover-main">
-  <section class="cover">
+  <section class="cover" id="cover">
 
     <!-- 远景场景：太阳 / 云 / 山丘 / 篱笆 / 两只小野猪 -->
     <div class="cover-scene" aria-hidden="true">
@@ -124,30 +124,48 @@
       <div class="cover-glow"></div>
       <div class="cover-sun"></div>
 
-      <!-- 夜晚的月亮（环形山 + 月相明暗） -->
-      <svg class="cover-moon" viewBox="0 0 140 140" aria-hidden="true">
+      <!-- 夜晚的月亮 -->
+      <svg class="cover-moon" viewBox="0 0 160 160" aria-hidden="true">
         <defs>
-          <radialGradient id="moonBody" cx="36%" cy="32%" r="72%">
-            <stop offset="0%" stop-color="#FFFBEA"/>
-            <stop offset="55%" stop-color="#F1EBCC"/>
-            <stop offset="100%" stop-color="#C9C7A4"/>
+          <radialGradient id="moonBody" cx="38%" cy="35%" r="70%">
+            <stop offset="0%" stop-color="#FFFDF5"/>
+            <stop offset="40%" stop-color="#F5EFD6"/>
+            <stop offset="75%" stop-color="#D8D3B5"/>
+            <stop offset="100%" stop-color="#B5B090"/>
           </radialGradient>
-          <radialGradient id="moonCrater" cx="38%" cy="34%" r="70%">
-            <stop offset="0%" stop-color="#CFCBA6"/>
-            <stop offset="100%" stop-color="#9C9C7E"/>
+          <radialGradient id="moonCrater1" cx="40%" cy="35%" r="65%">
+            <stop offset="0%" stop-color="#C8C4A0"/>
+            <stop offset="100%" stop-color="#9A9678"/>
+          </radialGradient>
+          <radialGradient id="moonCrater2" cx="40%" cy="35%" r="65%">
+            <stop offset="0%" stop-color="#BFB898"/>
+            <stop offset="100%" stop-color="#8A8668"/>
           </radialGradient>
           <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="55%" stop-color="#F5F0D2" stop-opacity=".28"/>
+            <stop offset="40%" stop-color="#F5F0D2" stop-opacity=".35"/>
             <stop offset="100%" stop-color="#F5F0D2" stop-opacity="0"/>
           </radialGradient>
+          <radialGradient id="moonTerminator" cx="65%" cy="55%" r="70%">
+            <stop offset="0%" stop-color="#000" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#3a3828" stop-opacity=".22"/>
+          </radialGradient>
         </defs>
-        <circle cx="70" cy="70" r="66" fill="url(#moonGlow)"/>
-        <circle cx="70" cy="70" r="46" fill="url(#moonBody)"/>
-        <circle cx="55" cy="58" r="8" fill="url(#moonCrater)" opacity=".8"/>
-        <circle cx="82" cy="50" r="5.5" fill="url(#moonCrater)" opacity=".7"/>
-        <circle cx="88" cy="82" r="10" fill="url(#moonCrater)" opacity=".8"/>
-        <circle cx="60" cy="88" r="6" fill="url(#moonCrater)" opacity=".75"/>
-        <circle cx="72" cy="68" r="4" fill="url(#moonCrater)" opacity=".6"/>
+        <!-- 光晕 -->
+        <circle cx="80" cy="80" r="76" fill="url(#moonGlow)"/>
+        <!-- 月面 -->
+        <circle cx="80" cy="80" r="52" fill="url(#moonBody)"/>
+        <!-- 环形山（大小不一，错落分布） -->
+        <ellipse cx="62" cy="66" rx="11" ry="9" fill="url(#moonCrater1)" opacity=".7"/>
+        <ellipse cx="62" cy="66" rx="5" ry="4" fill="url(#moonCrater2)" opacity=".5"/>
+        <ellipse cx="95" cy="58" rx="7" ry="6" fill="url(#moonCrater1)" opacity=".6"/>
+        <ellipse cx="98" cy="95" rx="13" ry="10" fill="url(#moonCrater1)" opacity=".75"/>
+        <ellipse cx="98" cy="95" rx="6" ry="5" fill="url(#moonCrater2)" opacity=".5"/>
+        <ellipse cx="68" cy="100" rx="8" ry="7" fill="url(#moonCrater1)" opacity=".65"/>
+        <ellipse cx="82" cy="80" rx="4.5" ry="4" fill="url(#moonCrater1)" opacity=".5"/>
+        <ellipse cx="55" cy="85" rx="5" ry="4.5" fill="url(#moonCrater1)" opacity=".55"/>
+        <ellipse cx="108" cy="75" rx="3.5" ry="3" fill="url(#moonCrater2)" opacity=".4"/>
+        <!-- 明暗交界线 -->
+        <circle cx="80" cy="80" r="52" fill="url(#moonTerminator)"/>
       </svg>
 
       <div class="cover-cloud cover-cloud--a"></div>
@@ -638,33 +656,6 @@
         </g>
       </svg>
 
-      <!-- ---------- 两只小野猪：左边深棕、右边奶白 ---------- -->
-      <svg class="cover-boars" viewBox="0 0 130 64" aria-hidden="true">
-        <defs>
-          <g id="boar">
-            <ellipse class="cb-shadow" cx="27" cy="47.5" rx="15.5" ry="3"/>
-            <path class="cb-tail" d="M13.6 30.6c-3.6-1.2-5.6 1.4-4.4 3.8 1 2.2 4.2 2 5.2-.4"/>
-            <path class="cb-ear" d="M15 21.6c-1.6-5.2.2-9 3.6-10.6 1.8 2.5 2.7 5.7 2.7 9z"/>
-            <path class="cb-ear" d="M39 21.6c1.6-5.2-.2-9-3.6-10.6-1.8 2.5-2.7 5.7-2.7 9z"/>
-            <path class="cb-body" d="M27 13.4c10.6 0 17.8 7.7 17.8 17.4C44.8 39.6 37 46.6 27 46.6S9.2 39.6 9.2 30.8C9.2 21.1 16.4 13.4 27 13.4z"/>
-            <ellipse class="cb-belly" cx="27" cy="37.4" rx="10.6" ry="7.4"/>
-            <ellipse class="cb-snout" cx="27" cy="35" rx="6.3" ry="4.6"/>
-            <ellipse class="cb-nose" cx="25.2" cy="35" rx="1.15" ry="1.4"/>
-            <ellipse class="cb-nose" cx="28.8" cy="35" rx="1.15" ry="1.4"/>
-            <ellipse class="cb-eye" cx="20.7" cy="26.2" rx="2.6" ry="2.9"/>
-            <ellipse class="cb-eye" cx="33.3" cy="26.2" rx="2.6" ry="2.9"/>
-            <circle class="cb-spark" cx="19.7" cy="25.1" r="1"/>
-            <circle class="cb-spark" cx="32.3" cy="25.1" r="1"/>
-            <circle class="cb-spark" cx="21.5" cy="27.4" r=".55"/>
-            <circle class="cb-spark" cx="34.1" cy="27.4" r=".55"/>
-            <circle class="cb-blush" cx="15.2" cy="31.4" r="2.8"/>
-            <circle class="cb-blush" cx="38.8" cy="31.4" r="2.8"/>
-          </g>
-        </defs>
-        <g class="cb cb--a"><g class="cb-hop"><use href="#boar"/></g></g>
-        <g class="cb cb--b"><g class="cb-hop"><use href="#boar"/></g></g>
-      </svg>
-
       <svg class="fall-leaf fl--1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 4C10 5 5 11 4 20c9 0 15-5 16-16z"/><path d="M4 20c4-5 9-10 16-16"/></svg>
       <svg class="fall-leaf fl--2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 4C10 5 5 11 4 20c9 0 15-5 16-16z"/><path d="M4 20c4-5 9-10 16-16"/></svg>
       <svg class="fall-leaf fl--3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 4C10 5 5 11 4 20c9 0 15-5 16-16z"/><path d="M4 20c4-5 9-10 16-16"/></svg>
@@ -813,6 +804,115 @@
     <a href="https://github.com/SYHGARY/YeZhuLi-Blog" target="_blank" rel="noopener">GitHub</a></p>
 </main>
 
+<main>
+  <div class="wrap">
+
+    <div class="page-head">
+      <svg class="deco deco--leaf" viewBox="0 0 60 60" fill="none" stroke="currentColor"
+           stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M46 14C28 16 14 26 12 46c18-1 30-12 34-32z"/>
+        <path d="M12 46C22 36 32 26 46 14"/>
+      </svg>
+      <svg class="head-sprig head-sprig--l" viewBox="0 0 78 58" aria-hidden="true">
+        <g class="hs-back">
+          <path d="M12 58C14 44 19 30 28 18 22 32 19 45 19 58Z"/>
+          <path d="M28 58C30 44 36 32 46 22 38 35 35 47 35 58Z"/>
+          <path d="M44 58C46 46 52 36 63 28 55 39 51 49 51 58Z"/>
+        </g>
+        <g class="hs-front">
+          <path d="M18 58C20 47 25 35 34 25 27 37 24 48 25 58Z"/>
+          <path d="M36 58C38 48 44 39 53 32 46 42 42 50 42 58Z"/>
+          <path d="M52 58C54 49 59 42 68 36 61 44 58 51 58 58Z"/>
+        </g>
+      </svg>
+      <svg class="head-sprig head-sprig--r" viewBox="0 0 78 58" aria-hidden="true">
+        <g class="hs-back">
+          <path d="M12 58C14 44 19 30 28 18 22 32 19 45 19 58Z"/>
+          <path d="M28 58C30 44 36 32 46 22 38 35 35 47 35 58Z"/>
+          <path d="M44 58C46 46 52 36 63 28 55 39 51 49 51 58Z"/>
+        </g>
+        <g class="hs-front">
+          <path d="M18 58C20 47 25 35 34 25 27 37 24 48 25 58Z"/>
+          <path d="M36 58C38 48 44 39 53 32 46 42 42 50 42 58Z"/>
+          <path d="M52 58C54 49 59 42 68 36 61 44 58 51 58 58Z"/>
+        </g>
+      </svg>
+      <h1>篱边日志</h1>
+      <p>文章、照片和想了一半的事，都按日期种在这条篱笆边上</p>
+    </div>
+
+    <!-- 分类筛选（也承担归档作用） -->
+    <div class="filters feed-filters">
+      <span class="filters-label">分类</span>
+      <div class="filters-inner" id="filterCats"></div>
+    </div>
+    <p class="result-hint" id="resultHint"></p>
+
+    <!-- 时间线 -->
+    <div class="feed" id="feed"></div>
+
+    <noscript>
+      <div class="state"><p>时间线需要开启 JavaScript 才能生成。</p></div>
+    </noscript>
+  </div>
+</main>
+
+<!-- ================= 页脚 ================= -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-vine" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 4C10 5 5 11 4 20c9 0 15-5 16-16z"/><path d="M4 20c4-5 9-10 16-16"/>
+      </svg>
+    </div>
+    <div class="footer-boars" aria-hidden="true">
+      <svg class="fboar--dark" viewBox="0 0 60 56">
+        <ellipse class="fb-shadow" cx="30" cy="52" rx="16" ry="2.8"/>
+        <path class="fb-ear" d="M15.6 21.6c-1.6-5.4.4-9.4 4-11 1.8 2.6 2.8 6 2.8 9.4z"/>
+        <path class="fb-ear" d="M44.4 21.6c1.6-5.4-.4-9.4-4-11-1.8 2.6-2.8 6-2.8 9.4z"/>
+        <ellipse class="fb-body" cx="30" cy="34" rx="19.4" ry="17.6"/>
+        <ellipse class="fb-belly" cx="30" cy="41.4" rx="11.4" ry="8"/>
+        <ellipse class="fb-snout" cx="30" cy="39.4" rx="6.6" ry="4.8"/>
+        <ellipse class="fb-pupil" cx="28.2" cy="39.4" rx="1.15" ry="1.4"/>
+        <ellipse class="fb-pupil" cx="31.8" cy="39.4" rx="1.15" ry="1.4"/>
+        <ellipse class="fb-eye" cx="23.2" cy="30" rx="2.7" ry="3"/>
+        <ellipse class="fb-eye" cx="36.8" cy="30" rx="2.7" ry="3"/>
+        <circle class="fb-spark" cx="22.2" cy="28.9" r="1"/>
+        <circle class="fb-spark" cx="35.8" cy="28.9" r="1"/>
+        <circle class="fb-blush" cx="17.4" cy="35.6" r="2.7"/>
+        <circle class="fb-blush" cx="42.6" cy="35.6" r="2.7"/>
+      </svg>
+      <svg class="fboar--light boar--flip" viewBox="0 0 60 56">
+        <ellipse class="fb-shadow" cx="30" cy="52" rx="16" ry="2.8"/>
+        <path class="fb-ear" d="M15.6 21.6c-1.6-5.4.4-9.4 4-11 1.8 2.6 2.8 6 2.8 9.4z"/>
+        <path class="fb-ear" d="M44.4 21.6c1.6-5.4-.4-9.4-4-11-1.8 2.6-2.8 6-2.8 9.4z"/>
+        <ellipse class="fb-body" cx="30" cy="34" rx="19.4" ry="17.6"/>
+        <ellipse class="fb-belly" cx="30" cy="41.4" rx="11.4" ry="8"/>
+        <ellipse class="fb-snout" cx="30" cy="39.4" rx="6.6" ry="4.8"/>
+        <ellipse class="fb-pupil" cx="28.2" cy="39.4" rx="1.15" ry="1.4"/>
+        <ellipse class="fb-pupil" cx="31.8" cy="39.4" rx="1.15" ry="1.4"/>
+        <ellipse class="fb-eye" cx="23.2" cy="30" rx="2.7" ry="3"/>
+        <ellipse class="fb-eye" cx="36.8" cy="30" rx="2.7" ry="3"/>
+        <circle class="fb-spark" cx="22.2" cy="28.9" r="1"/>
+        <circle class="fb-spark" cx="35.8" cy="28.9" r="1"/>
+        <circle class="fb-blush" cx="17.4" cy="35.6" r="2.7"/>
+        <circle class="fb-blush" cx="42.6" cy="35.6" r="2.7"/>
+      </svg>
+    </div>
+
+    <p class="footer-line">篱门常开，欢迎来坐坐</p>
+    <p class="footer-line">© <span data-year>2025</span> 野猪篱 · Wild Boar Hedge · 两个人共同书写</p>
+    <p class="footer-links">
+      <a href="blog.html">博客</a>
+      <span class="footer-sep">·</span>
+      <a href="about.html">关于</a>
+      <span class="footer-sep">·</span>
+      <a href="https://github.com/SYHGARY/YeZhuLi-Blog" target="_blank" rel="noopener">GitHub 仓库</a>
+    </p>
+  </div>
+</footer>
+<script src="assets/js/markdown.js" defer></script>
 <script src="assets/js/main.js" defer></script>
 <script src="assets/js/blog.js" defer></script>
 </body>

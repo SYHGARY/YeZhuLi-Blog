@@ -388,9 +388,11 @@ html[data-theme="dark"] .cover-moon{display:block}
      0.15s 门开始转 · 0.35s 门缝透光 · 1.05s 野猪跑进门
      1.20s 文字退场 · 1.30s 镜头推近 · 1.55s 化白                */
 .gate{transform-box:view-box;will-change:transform}
-.gate--l{transform-origin:620px 54px}
-.gate--r{transform-origin:820px 54px}
-.gate-shade{opacity:0}
+.gate--l{transform-origin:620px 54px;transition:none}
+.gate--r{transform-origin:820px 54px;transition:none}
+.gate-shade{opacity:0;transition:none}
+.cover-inner{transition:none}
+.cover-scene{transition:none}
 
 .cover::after{
   content:"";position:absolute;inset:0;z-index:6;pointer-events:none;
@@ -1082,35 +1084,45 @@ html[data-theme="dark"] .pb-flower{opacity:.66}
   position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
   width:22px;height:22px;color:var(--green-mid);background:var(--paper);padding:0 6px;
 }
-.footer-boars{display:flex;align-items:center;justify-content:center;gap:20px;color:var(--wood);margin-bottom:18px}
-/* 页脚野猪：悬停摇一摇，点了冒爱心 */
-.footer-boars svg{cursor:pointer;transition:filter .25s}
-/* 待机时自己跳一下（由 main.js 隔几秒触发一次） */
+.footer-boars{display:flex;align-items:center;justify-content:center;gap:24px;color:var(--wood);margin-bottom:18px}
+/* 页脚野猪：一直轻微呼吸跳动，悬停更活泼，点了冒爱心 */
+.footer-boars svg{cursor:pointer;transition:filter .25s;animation:boarBreathe 2.8s ease-in-out infinite}
+.footer-boars svg:last-child{animation:boarBreatheFlip 2.8s ease-in-out .4s infinite}
+@keyframes boarBreathe{
+  0%,100%{transform:translateY(0) scale(1,1)}
+  50%{transform:translateY(-4px) scale(1.03,.97)}
+}
+@keyframes boarBreatheFlip{
+  0%,100%{transform:scaleX(-1) translateY(0) scale(1,1)}
+  50%{transform:scaleX(-1) translateY(-4px) scale(1.03,.97)}
+}
+/* 点了跳一下 */
 .footer-boars svg.is-hopping{animation:boarIdleHop .95s var(--ease-out)}
 .footer-boars svg:last-child.is-hopping{animation:boarIdleHopFlip .95s var(--ease-out)}
 @keyframes boarIdleHop{
   0%,100%{transform:translateY(0) scale(1,1)}
-  20%{transform:translateY(-11px) scale(1.06,.94)}
-  46%{transform:translateY(0) scale(.94,1.06)}
-  66%{transform:translateY(-4px) scale(1.02,.98)}
+  20%{transform:translateY(-14px) scale(1.08,.92)}
+  46%{transform:translateY(0) scale(.92,1.08)}
+  66%{transform:translateY(-5px) scale(1.02,.98)}
 }
 @keyframes boarIdleHopFlip{
   0%,100%{transform:scaleX(-1) translateY(0) scale(1,1)}
-  20%{transform:scaleX(-1) translateY(-11px) scale(1.06,.94)}
-  46%{transform:scaleX(-1) translateY(0) scale(.94,1.06)}
-  66%{transform:scaleX(-1) translateY(-4px) scale(1.02,.98)}
+  20%{transform:scaleX(-1) translateY(-14px) scale(1.08,.92)}
+  46%{transform:scaleX(-1) translateY(0) scale(.92,1.08)}
+  66%{transform:scaleX(-1) translateY(-5px) scale(1.02,.98)}
 }
-.footer-boars svg:hover{animation:boarWiggle .55s ease-in-out infinite}
-.footer-boars svg:last-child:hover{animation:boarWiggleFlip .55s ease-in-out infinite}
+/* 悬停：疯狂摇摆 */
+.footer-boars svg:hover{animation:boarWiggle .4s ease-in-out infinite}
+.footer-boars svg:last-child:hover{animation:boarWiggleFlip .4s ease-in-out infinite}
 @keyframes boarWiggle{
   0%,100%{transform:translateY(0) rotate(0)}
-  25%{transform:translateY(-4px) rotate(-6deg)}
-  75%{transform:translateY(-4px) rotate(6deg)}
+  25%{transform:translateY(-6px) rotate(-8deg)}
+  75%{transform:translateY(-6px) rotate(8deg)}
 }
 @keyframes boarWiggleFlip{
   0%,100%{transform:scaleX(-1) translateY(0) rotate(0)}
-  25%{transform:scaleX(-1) translateY(-4px) rotate(-6deg)}
-  75%{transform:scaleX(-1) translateY(-4px) rotate(6deg)}
+  25%{transform:scaleX(-1) translateY(-6px) rotate(-8deg)}
+  75%{transform:scaleX(-1) translateY(-6px) rotate(8deg)}
 }
 /* 页脚野猪：跟封面同款、同配色 */
 .fboar--dark{--fb-body:#A07E66;--fb-belly:#C09E85;--fb-ear:#8E6C56;--fb-snout:#DCC3AC;--fb-line:#7A5645}

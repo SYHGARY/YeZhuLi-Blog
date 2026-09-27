@@ -250,75 +250,84 @@
     });
   }
 
-  /* ============ 推门过场 ============
-     点「推开篱门」/「下滑推门」/ 鼠标下滚 / 触屏上滑 / 下方向键，
-     都会先把篱门推开，再进博客。 */
+  /* ============ 推门过场（随滚动自然展开） ============
+     页面自然滚动，门随滚动进度打开；滚回去门合上。 */
   function initGate() {
     var cover = $('.cover');
     if (!cover) return;
 
-    var DURATION = 2650;   /* 与 style.css 里 .is-opening 的时间轴对齐 */
-    var opening = false;
+    var gateL = $('.gate--l', cover);
+    var gateR = $('.gate--r', cover);
+    var shade = $('.gate-shade', cover);
+    var inner = $('.cover-inner', cover);
+    var scene = $('.cover-scene', cover);
 
-    function reduced() {
-      return window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function apply(p) {
+      p = Math.max(0, Math.min(1, p));
+      if (gateL) gateL.style.transform = 'scaleX(' + (1 - p * 0.965) + ')';
+      if (gateR) gateR.style.transform = 'scaleX(' + (1 - p * 0.965) + ')';
+      if (shade) shade.style.opacity = p * 0.38;
+      if (inner) {
+        inner.style.opacity = 1 - p * 1.2;
+        inner.style.transform = 'translateY(' + (-p * 30) + 'px) scale(' + (1 - p * 0.04) + ')';
+      }
+      if (scene) scene.style.transform = 'scale(' + (1 + p * 0.2) + ')';
     }
 
-    function openGate() {
-      if (opening) return;
-      opening = true;
-      if (reduced()) { location.href = 'blog.html'; return; }
-      cover.classList.add('is-opening');
-      document.body.style.overflow = 'hidden';
-      setTimeout(function () { location.href = 'blog.html'; }, DURATION);
+    function onScroll() {
+      var coverH = cover.offsetHeight;
+      var y = window.scrollY || window.pageYOffset;
+      var p = Math.min(1, y / (coverH * 0.7));
+      apply(p);
+
+      /* 导航滚动后变实 */
+      var nav = $('.site-nav');
+      if (nav) nav.classList.toggle('is-scrolled', y > 40);
     }
 
-    /* 1) 门上的两个入口 */
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    /* 点「推开篱门」：平滑滚下去 */
     $$('a[href="blog.html"]', cover).forEach(function (a) {
       a.addEventListener('click', function (e) {
         e.preventDefault();
-        openGate();
+        var coverH = cover.offsetHeight;
+        window.scrollTo({ top: coverH * 0.7, behavior: 'smooth' });
+      });
+    });
+    $$('a[href="blog.html"].cover-scroll').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        var coverH = cover.offsetHeight;
+        window.scrollTo({ top: coverH * 0.7, behavior: 'smooth' });
       });
     });
 
-    /* 2) 鼠标向下滚 */
-    window.addEventListener('wheel', function (e) {
-      if (opening || e.deltaY < 8) return;
-      openGate();
-    }, { passive: true });
-
-    /* 3) 触屏上滑 */
-    var touchY = 0;
-    window.addEventListener('touchstart', function (e) {
-      touchY = e.touches[0] ? e.touches[0].clientY : 0;
-    }, { passive: true });
-    window.addEventListener('touchend', function (e) {
-      if (opening) return;
-      var end = e.changedTouches[0] ? e.changedTouches[0].clientY : touchY;
-      if (touchY - end > 44) openGate();
-    }, { passive: true });
-
-    /* 4) 键盘 */
-    document.addEventListener('keydown', function (e) {
-      if (opening) return;
-      if (e.key === 'ArrowDown' || e.key === 'PageDown') openGate();
-    });
-
-    /* 从缓存返回时，把门恢复成关着的 */
-    window.addEventListener('pageshow', function (e) {
-      if (!e.persisted) return;
-      opening = false;
-      cover.classList.remove('is-opening');
-      document.body.style.overflow = '';
-    });
+    apply(0);
   }
 
   /* ================= 启动 ================= */
+  function initNavSmoothScroll() {
+    document.querySelectorAll('[data-scroll-to]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        var id = a.getAttribute('data-scroll-to');
+        var el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        /* 关闭移动端菜单 */
+        var menu = document.getElementById('navMenu');
+        if (menu) menu.classList.remove('is-open');
+      });
+    });
+  }
+
   function boot() {
     initCoverQuote();
     initCoverInteractions();
     initGate();
     initFeed();
+    initNavSmoothScroll();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
