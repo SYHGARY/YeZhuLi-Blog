@@ -4,11 +4,11 @@ backend:
   branch: main
   base_url: https://boarhedge-oauth.1542638802.workers.dev/
 
-# 媒体（照片）上传到这个文件夹
-media_folder: assets/images/photos
+# 媒体（照片）上传到这个文件夹（绝对路径，从站点根目录开始）
+media_folder: /assets/images/photos
 public_folder: /assets/images/photos
 
-# 发布后显示的网站地址（部署后改成 Cloudflare 给你的网址）
+# 发布后显示的网站地址
 site_url: https://boarhedge.pages.dev
 
 collections:
@@ -45,13 +45,13 @@ collections:
         name: cover
         widget: image
         required: false
-        media_folder: assets/images/photos
+        media_folder: /assets/images/photos
         public_folder: /assets/images/photos
       - label: 文章图片
         name: images
         widget: list
         summary: '{{fields.image}}'
-        field: { label: 图片, name: image, widget: image, media_folder: assets/images/photos, public_folder: /assets/images/photos }
+        field: { label: 图片, name: image, widget: image, media_folder: /assets/images/photos, public_folder: /assets/images/photos }
         allow_add: true
         required: false
       - { label: 正文, name: body, widget: markdown }
