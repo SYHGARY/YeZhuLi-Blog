@@ -2,6 +2,7 @@ backend:
   name: github
   repo: SYHGARY/YeZhuLi-Blog
   branch: main
+  base_url: https://boarhedge-oauth.1542638802.workers.dev/
 
 # 媒体（照片）上传到这个文件夹
 media_folder: assets/images/photos
