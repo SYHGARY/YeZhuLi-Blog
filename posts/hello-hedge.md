@@ -7,7 +7,7 @@ tags:
   - 野猪篱
 author: 猪猪小宋
 excerpt: 记录小宋和小李的过去、现在，以及未来。
-cover: assets/images/covers/hello-hedge.svg
+cover: /鸡鸣寺.jpg
 images: []
 ---
 ## 为什么要写
