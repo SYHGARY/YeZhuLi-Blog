@@ -4,19 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>野猪篱 · 后台</title>
-  <script>
-    // 从 URL hash 中提取 access_token，存到 Decap 能识别的 localStorage
-    (function() {
-      var hash = window.location.hash;
-      var match = hash.match(/access_token=([^&]+)/);
-      if (match) {
-        var token = decodeURIComponent(match[1]);
-        var user = { token: token, backend: 'github' };
-        localStorage.setItem('netlify-cms-user', JSON.stringify(user));
-        history.replaceState(null, '', window.location.pathname);
-      }
-    })();
-  </script>
   <script src="decap-cms.js" defer></script>
 </head>
 <body>
