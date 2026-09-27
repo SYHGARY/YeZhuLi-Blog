@@ -6,7 +6,7 @@ backend:
 
 # 媒体（照片）上传到这个文件夹
 media_folder: assets/images/photos
-public_folder: /
+public_folder: /assets/images/photos
 
 # 发布后显示的网站地址（部署后改成 Cloudflare 给你的网址）
 site_url: https://boarhedge.pages.dev
@@ -24,7 +24,7 @@ collections:
       preview: false
     fields:
       - { label: 标题, name: title, widget: string }
-      - { label: 日期, name: date, widget: string, hint: '格式：2025-09-26' }
+      - { label: 日期, name: date, widget: string, hint: '格式：2026-09-26' }
       - label: 分类
         name: category
         widget: select
@@ -36,7 +36,7 @@ collections:
         summary: '{{fields.tag}}'
         field: { label: 标签, name: tag, widget: string }
         allow_add: true
-      - { label: 作者, name: author, widget: string, hint: '阿篱 或 小野' }
+      - { label: 作者, name: author, widget: string, hint: '小宋 或 小李' }
       - label: 摘要
         name: excerpt
         widget: text
@@ -46,12 +46,12 @@ collections:
         widget: image
         required: false
         media_folder: assets/images/photos
-        public_folder: /
+        public_folder: /assets/images/photos
       - label: 文章图片
         name: images
         widget: list
         summary: '{{fields.image}}'
-        field: { label: 图片, name: image, widget: image, media_folder: assets/images/photos, public_folder: / }
+        field: { label: 图片, name: image, widget: image, media_folder: assets/images/photos, public_folder: /assets/images/photos }
         allow_add: true
         required: false
       - { label: 正文, name: body, widget: markdown }
