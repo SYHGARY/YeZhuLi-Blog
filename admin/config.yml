@@ -1,13 +1,14 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: SYHGARY/你的仓库名
   branch: main
 
 # 媒体（照片）上传到这个文件夹
 media_folder: assets/images/photos
 public_folder: /
 
-# 发布后显示的网站地址
-site_url: https://boarhedge.netlify.app
+# 发布后显示的网站地址（部署后改成 Cloudflare 给你的网址）
+site_url: https://boarhedge.pages.dev
 
 collections:
   - name: posts
